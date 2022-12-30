@@ -1,0 +1,43 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <h1 class="text-center mb-5">Vista de un usuario</h1>
+            <table class="table table-bordered table-striped">
+                <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{oIUsuario?.id}}</td>
+                    </tr>
+                    <tr>
+                        <td>DNI</td>
+                        <td>{{oIUsuario?.dni}}</td>
+                    </tr>
+                    <tr>
+                        <td>NOMBRE</td>
+                        <td>{{oIUsuario?.nombre}}</td>
+                    </tr>
+                    <tr>
+                        <td>APELLIDO1</td>
+                        <td>{{oIUsuario?.apellido1}}</td>
+                    </tr>
+                    <tr>
+                        <td>APELLIDO2</td>
+                        <td>{{oIUsuario?.apellido2}}</td>
+                    </tr>
+                    <tr>
+                        <td>LOGIN</td>
+                        <td>{{oIUsuario?.login}}</td>
+                    </tr>
+                    <tr>
+                        <td>EMAIL</td>
+                        <td>{{oIUsuario?.email}}</td>
+                    </tr>
+                    <tr>
+                        <td>ID TIPOUSUARIO</td>
+                        <td>{{oIUsuario?.tipousuario.id}}-{{oIUsuario.tipousuario.nombre}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
