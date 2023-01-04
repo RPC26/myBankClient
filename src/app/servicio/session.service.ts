@@ -1,25 +1,83 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { filter, map, Observable, Subject, Subscription } from 'rxjs';
 import { BASE_URL, HTTP_OPTIONS } from 'src/environments/environment';
 import { IUsuario } from '../model/usuario-interface';
+import { CryptoService } from './crypto.service';
+import { DecodeService } from './decode.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SessionService {
 
-  constructor(private http: HttpClient) { }
+  private entityURL = '/session';
+  sURL: string = `${BASE_URL}${this.entityURL}`;
+  subject = new Subject<any>();
 
-  login(user: string, password: string) {
-    const loginData = JSON.stringify({login: user, password: password})
-    return this.http.post(BASE_URL + "/session", loginData, HTTP_OPTIONS)
+  constructor(private http: HttpClient, private oDecodeService: DecodeService, private oCryptoService: CryptoService,) { }
+
+  login(user: string, password: string): Observable<string> {
+    const loginData = { login: user, password: this.oCryptoService.getSHA256(password) };
+    return this.http.post<string>(this.sURL, loginData, HTTP_OPTIONS);
+  }
+
+  getToken(): string {
+    return localStorage.getItem("token");
+  }
+
+  getUserName(): string {
+    if (!this.isSessionActive()) {
+        return "";
+    } else {
+        let token: string = localStorage.getItem("token");
+        return this.oDecodeService.decode(token).name;
+    }
+}
+
+  isSessionActive(): Boolean {
+    let strToken: string = localStorage.getItem("token");
+    if (strToken) {
+      let oDecodedToken = this.oDecodeService.decode(strToken);
+      if (Date.now() >= oDecodedToken.exp * 1000) {
+        return false;
+      } else {
+        return true;
+      }
+    } else {
+      return false;
+    }
   }
 
   logout() {
-    return this.http.delete(BASE_URL + "/session", HTTP_OPTIONS)
+    return localStorage.removeItem("token");
   }
 
-  test(id: number) {
-    return this.http.get<IUsuario>(BASE_URL + "/usuario/" + id, HTTP_OPTIONS)
+  on(event: Events, action: any): Subscription {
+    return this.subject
+      .pipe(
+        filter((e: EmitEvent) => {
+          return e.name === event;
+        }),
+        map((e: EmitEvent) => {
+          return e.value;
+        })
+      )
+      .subscribe(action);
   }
+
+  emit(event: EmitEvent) {
+    this.subject.next(event);
+  }
+
+}
+
+export class EmitEvent {
+  constructor(public name: any, public value?: any) {}
+}
+
+// this works like a communication channel
+export enum Events {
+  login,
+  logout
 }

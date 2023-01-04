@@ -7,10 +7,12 @@ import { UsuarioRemoveAdminRoutedComponent } from './componente/application/usua
 import { UsuarioViewAdminRoutedComponent } from './componente/application/usuario/routed/admin/usuario-view-admin-routed/usuario-view-admin-routed.component';
 import { HomeComponent } from './componente/shared/routed/home/home.component';
 import { LoginComponent } from './componente/shared/routed/login/login.component';
+import { LogoutComponent } from './componente/shared/routed/logout/logout.component';
 
 const routes: Routes = [
   {path: "home", component: HomeComponent},
   {path:"login", component: LoginComponent },
+  { path: 'logout', component: LogoutComponent }, 
   {path: "plist/usuario", component: UsuarioPlistAdminRoutedComponent},
   {path: "admin/usuario/view/:id", component: UsuarioViewAdminRoutedComponent},
   {path: "admin/usuario/edit/:id", component: UsuarioEditAdminRoutedComponent },

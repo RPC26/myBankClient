@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SessionService } from 'src/app/servicio/session.service';
+import { Events, SessionService } from 'src/app/servicio/session.service';
 
 
 @Component({
@@ -11,19 +11,23 @@ export class MenuComponent implements OnInit {
 
   strUserName: string = "";
 
-  constructor(private oSessionService: SessionService) { }
+  constructor(private oSessionService: SessionService,) {
+    this.strUserName = oSessionService.getUserName();
+  }
 
   ngOnInit() {
-    
+    this.oSessionService.on(
+      Events.login, (data: any) => {
+        this.strUserName = this.oSessionService.getUserName();
+      });
+    this.oSessionService.on(
+      Events.logout, (data: any) => {
+        this.strUserName = '';
+      });
+
 
   }
 
-  logout () {
-    this.oSessionService.logout().subscribe(
-      {
-        next: () => console.log("logged out")
-      }
-    )
-  }
+
 
 }

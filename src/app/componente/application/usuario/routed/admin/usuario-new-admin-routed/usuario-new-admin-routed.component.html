@@ -156,12 +156,24 @@
           </div>
         </div>
         <div class="mb-3 row">
-          <label for="inputTeam" class="col-sm-2 col-form-label">ID de tipo usuario</label>
-          <div class="col-sm-4 has-validation">
-            <input type="text" class="form-control" id="inputUsuario" formControlName="id_tipousuario">
-            <div id="inputloginFeedback" class="invalid-feedback"
+          <label for="inputUsertype" class="col-sm-2 col-form-label">Tipo usuario</label>
+          <div class="col-sm-6 has-validation">
+            <div class="input-group">
+              <span class="input-group-text">Descripcion de la ajena</span>
+              <input type="number" class="form-control" formControlName="id_tipousuario" [ngClass]="{'is-valid' : 
+              oForm.controls.id_tipousuario.dirty && !oForm.controls.id_tipousuario.errors?.['required'] &&
+               !oForm.controls.id_tipousuario.errors?.['pattern'],
+                'is-invalid' :  (oForm.controls.id_tipousuario.dirty &&  oForm.controls.id_tipousuario.errors?.['required'] )
+                || ( oForm.controls.id_tipousuario.dirty &&  oForm.controls.id_tipousuario.errors?.['pattern'])}">
+              <button type="button" class="btn btn-primary" (click)="showForeignModal()">Buscar</button>
+            </div>
+            <div class="text-danger"
               *ngIf="oForm.controls.id_tipousuario.dirty &&  oForm.controls.id_tipousuario.errors?.['required']">
               El campo es obligatorio.
+            </div>
+            <div class="text-danger"
+              *ngIf="oForm.controls.id_tipousuario.dirty &&  oForm.controls.id_tipousuario.errors?.['pattern']">
+              El campo ha de ser un entrero de máximo 6 dígitos.
             </div>
           </div>
         </div>
@@ -187,6 +199,26 @@
       <div class="modal-body">
 
         {{modalContent}}
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" [id]="ajena" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <app-tipousuario-plist-admin-unrouted (tipousuarioSelected)="setTipousario($event)"></app-tipousuario-plist-admin-unrouted>
 
       </div>
       <div class="modal-footer">

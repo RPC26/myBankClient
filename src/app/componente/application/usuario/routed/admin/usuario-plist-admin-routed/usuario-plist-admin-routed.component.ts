@@ -89,6 +89,7 @@ export class UsuarioPlistAdminRoutedComponent implements OnInit {
 
     setFilterByTipousuario(id: number) {
         this.tipousuarioFilter = id;
+        this.numberPage = 0;
         this.getPage();
     }
 

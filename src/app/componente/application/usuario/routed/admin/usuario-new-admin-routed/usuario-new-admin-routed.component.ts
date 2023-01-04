@@ -45,7 +45,7 @@ export class UsuarioNewAdminRoutedComponent implements OnInit {
       id_tipousuario: ['', Validators.required]
     });
   }
-
+  
   onSubmit() {
     console.log("onSubmit");
     this.oUsuario2Send = {
@@ -71,17 +71,22 @@ export class UsuarioNewAdminRoutedComponent implements OnInit {
 
   }
 
-  
+  setTipousario(id: number) {
+    this.oForm.controls['id_tipousuario'].setValue(id);
+    this.myModal.hide();
+  }
 
   showModal = (data) => {
-    this.myModal = new bootstrap.Modal(document.getElementById(this.mimodal), { //pasar el myModal como parametro
-      keyboard: false
-    })
+    this.myModal = new bootstrap.Modal(document.getElementById(this.mimodal), {keyboard: false})
     var myModalEl = document.getElementById(this.mimodal);
-    myModalEl.addEventListener('hidden.bs.modal', (event): void => {
-      this.oRouter.navigate(['/admin/user/view', data])
+    myModalEl.addEventListener('hidden.bs.modal', (): void => {
+      this.oRouter.navigate(['/admin/usuario/view', data])
     })
     this.myModal.show()
   }
-
+  
+  showForeignModal = () => {
+    this.myModal = new bootstrap.Modal(document.getElementById(this.ajena), {keyboard: false})
+    this.myModal.show();   
+  }
 }

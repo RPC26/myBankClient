@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IUser } from 'src/app/model/session-interface';
 import { IUsuario } from 'src/app/model/usuario-interface';
-import { SessionService } from 'src/app/servicio/session.service';
+import { EmitEvent, Events, SessionService } from 'src/app/servicio/session.service';
 
 
 @Component({
@@ -39,17 +39,23 @@ export class LoginComponent implements OnInit {
 
     this.oSessionService.login(user, password).subscribe(
       {
-        next: () => console.log("success")
+        next: (data: string) => {
+          localStorage.setItem("token", data);
+          this.oSessionService.emit(new EmitEvent(Events.login, data));
+          this.oRouter.navigate(['/home'])
+        },
+        error: (error: HttpErrorResponse) => {
+          console.log(error.status, error.statusText);
+        }
       }
     )
   }
 
-  callTest() {
-    this.oSessionService.test(3).subscribe(
-      {
-        next: (data: IUsuario) => this.usuarioName = data.nombre
-      }
-    )
+  loginAsAdmin() {
+    console.log("loginAsAdmin");
+    this.oFormulario.controls.login.setValue("prueba");
+    this.oFormulario.controls.password.setValue("prueba");
   }
-  
+
+
 }
