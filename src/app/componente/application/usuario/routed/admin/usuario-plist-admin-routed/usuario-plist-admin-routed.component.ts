@@ -3,6 +3,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { faEye, faUserPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { IUsuario, IUsuarioPage } from 'src/app/model/usuario-interface';
 import { UsuarioService } from 'src/app/servicio/usuario.service';
+declare let bootstrap: any;
 
 @Component({
     selector: 'app-usuario-plist-admin-routed',
@@ -26,6 +27,11 @@ export class UsuarioPlistAdminRoutedComponent implements OnInit {
     faEye = faEye;
     faUserPen = faUserPen;
     faTrash = faTrash;
+
+    generateModal: any;
+    generateModalTitle: string = "";
+    generateModalId: string = "modalGenerate";
+    generateModalContent: string = "";
 
     constructor(
         private oUsuarioService: UsuarioService
@@ -54,6 +60,26 @@ export class UsuarioPlistAdminRoutedComponent implements OnInit {
                 }
             });
     }
+
+    generate(amount: number) {
+        return this.oUsuarioService.generate(amount).subscribe(
+            {
+                next: (data: number) => {
+                    //modal
+                    this.generateModalTitle = "MyBank"
+                    this.generateModalContent = `Total de usuarios: ${data}`
+                    this.showModal();
+                    console.log(data)
+                    this.getPage();
+                }
+            }
+        );
+    }
+
+    showModal = () => {
+        this.generateModal = new bootstrap.Modal(document.getElementById(this.generateModalId), {keyboard: false})
+        this.generateModal.show()
+      }
 
     getPageContent(): IUsuario[] {
         return this.pListContent;

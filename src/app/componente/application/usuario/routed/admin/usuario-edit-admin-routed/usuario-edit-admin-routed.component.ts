@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IUsuario, IUsuario2Form, IUsuario2Send } from 'src/app/model/usuario-interface';
+import { IUsuario, IUsuario2Form, IUsuarioUpdate } from 'src/app/model/usuario-interface';
 import { UsuarioService } from 'src/app/servicio/usuario.service';
 declare let bootstrap: any;
 @Component({
@@ -14,7 +14,7 @@ export class UsuarioEditAdminRoutedComponent implements OnInit {
   id: number = 0;
   oIUsuario: IUsuario = null;
   oUsuario2Form: IUsuario2Form = null;
-  oUsuario2Send: IUsuario2Send = null;
+  oUsuario2Send: IUsuarioUpdate = null;
   oForm: FormGroup<IUsuario2Form>;
   // modal
   mimodal: string = "miModal";

@@ -156,6 +156,30 @@
           </div>
         </div>
         <div class="mb-3 row">
+          <label for="inputpassword" class="col-sm-2 col-form-label">password</label>
+          <div class="col-sm-4 has-validation">
+            <input type="password" class="form-control" [ngClass]="{'is-valid' : oForm.controls.password.dirty && !oForm.controls.password.errors?.['required'] &&
+            oForm.controls.password.dirty && !oForm.controls.password.errors?.['minlength'] 
+              && oForm.controls.password.dirty && !oForm.controls.password.errors?.['maxlength'],
+              'is-invalid' :  oForm.controls.password.dirty &&  oForm.controls.password.errors?.['minlength'] 
+              ||  oForm.controls.password.dirty &&  oForm.controls.password.errors?.['maxlength'] ||  
+              oForm.controls.password.dirty &&  oForm.controls.password.errors?.['required']}" id="inputpassword"
+              formControlName="password">
+            <div id="inputpasswordFeedback" class="invalid-feedback"
+              *ngIf="oForm.controls.password.dirty &&  oForm.controls.password.errors?.['minlength']">
+              La longitud mínima es de 5 caracteres.
+            </div>
+            <div id="inputpasswordFeedback" class="invalid-feedback"
+              *ngIf="oForm.controls.password.dirty &&  oForm.controls.password.errors?.['maxlength']">
+              La longitud máxima es de 10 caracteres.
+            </div>
+            <div id="inputpasswordFeedback" class="invalid-feedback"
+              *ngIf="oForm.controls.password.dirty &&  oForm.controls.password.errors?.['required']">
+              El campo es obligatorio.
+            </div>
+          </div>
+        </div>
+        <div class="mb-3 row">
           <label for="inputUsertype" class="col-sm-2 col-form-label">Tipo usuario</label>
           <div class="col-sm-6 has-validation">
             <div class="input-group">

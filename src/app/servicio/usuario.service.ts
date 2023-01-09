@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BASE_URL, HTTP_OPTIONS } from 'src/environments/environment';
-import { IUsuario, IUsuario2Send, IUsuarioPage } from '../model/usuario-interface';
+import { IUsuario, IUsuarioUpdate, IUsuarioPage, IUsuarioCreate } from '../model/usuario-interface';
 
 @Injectable({
   providedIn: 'root'
@@ -47,12 +47,16 @@ removeOne(id: number): Observable<number> {
   return this.oHttp.delete<number>(`${this.url}/${id}`, HTTP_OPTIONS);
 }
 
-newOne(oUsuario2Send: IUsuario2Send): Observable<number> {       
-  return this.oHttp.post<number>(this.url, oUsuario2Send, HTTP_OPTIONS);
+newOne(oUsuarioCreate: IUsuarioCreate): Observable<number> {       
+  return this.oHttp.post<number>(this.url, oUsuarioCreate, HTTP_OPTIONS);
 }
 
-updateOne(oUsuario2Send: IUsuario2Send): Observable<number> {
+updateOne(oUsuario2Send: IUsuarioUpdate): Observable<number> {
   return this.oHttp.put<number>(this.url, oUsuario2Send, HTTP_OPTIONS);
+}
+
+generate(amount: number): Observable<number> {
+  return this.oHttp.post<number>(`${this.url}/generate/${amount}`, null, HTTP_OPTIONS)
 }
 
 }

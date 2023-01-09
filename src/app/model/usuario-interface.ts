@@ -32,17 +32,30 @@ export interface IUsuario2Form {
     apellido1: FormControl<string>;
     apellido2: FormControl<string>;
     login: FormControl<string>;
+    password: FormControl<string>;
     email: FormControl<string>;
     id_tipousuario: FormControl<number>;
 }
 
-export interface IUsuario2Send {
+export interface IUsuarioUpdate {
     id: number;
     dni: string;
     nombre: string;
     apellido1: string;
     apellido2: string;
     login: string;
+    email: string;
+    tipousuario: IEntity;
+}
+
+export interface IUsuarioCreate {
+    id: number;
+    dni: string;
+    nombre: string;
+    apellido1: string;
+    apellido2: string;
+    login: string;
+    password: string;
     email: string;
     tipousuario: IEntity;
 }
