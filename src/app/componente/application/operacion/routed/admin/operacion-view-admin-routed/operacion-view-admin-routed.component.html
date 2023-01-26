@@ -1,0 +1,36 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <h1 class="text-center mb-5">Vista de una Operacion</h1>
+            <table class="table table-bordered table-striped">
+                <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{oIOperacion?.id}}</td>
+                    </tr>
+                    <tr>
+                        <td>FECHA CREACIÓN</td>
+                        <td>{{oIOperacion?.fechahoraoperacion}}</td>
+                    </tr>
+                    <tr>
+                        <td>CANTIDAD</td>
+                        <td>{{oIOperacion?.cantidad}}</td>
+                    </tr>
+                    <tr>
+                        <td>TIPO OPERACION</td>
+                        <td>{{oIOperacion?.tipoOperacion.id}}-{{oIOperacion?.tipoOperacion.nombre}}</td>
+                    </tr>
+
+                    <tr>
+                        <td>CUENTA EMISOR</td>
+                        <td>{{oIOperacion?.cuentaEmisor.id}}-{{oIOperacion?.cuentaEmisor.usuario.nombre}}</td>
+                    </tr>
+                    <tr>
+                        <td>CUENTA RECEPTOR</td>
+                        <td>{{oIOperacion?.cuentaReceptor.id}}-{{oIOperacion?.cuentaReceptor.usuario.nombre}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

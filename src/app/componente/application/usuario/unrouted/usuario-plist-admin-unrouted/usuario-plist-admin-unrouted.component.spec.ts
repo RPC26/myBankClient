@@ -1,23 +1,22 @@
-/* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { UsuarioPlistAdminRoutedComponent } from './usuario-plist-admin-routed.component';
+import { UsuarioPlistAdminUnRoutedComponent } from './usuario-plist-admin-unrouted.component';
 
-describe('ResolutionPlistAdminRoutedComponent', () => {
-  let component: UsuarioPlistAdminRoutedComponent;
-  let fixture: ComponentFixture<UsuarioPlistAdminRoutedComponent>;
+describe('UsuarioPlistAdminRoutedComponent', () => {
+  let component: UsuarioPlistAdminUnRoutedComponent;
+  let fixture: ComponentFixture<UsuarioPlistAdminUnRoutedComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UsuarioPlistAdminRoutedComponent ]
+      declarations: [ UsuarioPlistAdminUnRoutedComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UsuarioPlistAdminRoutedComponent);
+    fixture = TestBed.createComponent(UsuarioPlistAdminUnRoutedComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

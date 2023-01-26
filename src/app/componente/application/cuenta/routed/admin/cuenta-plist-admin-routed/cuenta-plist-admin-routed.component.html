@@ -1,70 +1,70 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col">
-            <h1 class="text-center mb-5">USUARIOS</h1>
+            <h1 class="text-center mb-5">CUENTAS BANCARIAS</h1>
             <div class="col-md text-end d-flex justify-content-center align-items-center mb-3">
-                <app-search-unrouted [placeHolder]="'Buscar usuario'" (onSearch)="setFilter( $event )">
+                <app-search-unrouted [placeHolder]="'Buscar cuenta'" (onSearch)="setFilter( $event )">
                 </app-search-unrouted>
                 <app-dropdown-register-page class="mx-2" [PageSize]="this.getPageRegister()"
                     (eeRpp)="this.setRpp($event)">
                 </app-dropdown-register-page>
-                <button type="button" class="btn btn-warning" [routerLink]="['/admin/usuario/new']">Crear
-                    Usuario</button>
+                <button type="button" class="btn btn-warning" [routerLink]="['/admin/cuenta/new']">Crear
+                    Cuenta</button>
             </div>
             <div class="col-md d-flex align-items-center justify-content-between text-center">
                 <app-pagination-unrouted [nPage]="getPageNumber() + 1" [nTotalPages]="this.getpagesCount()"
                     (eePage)="setPage($event)"></app-pagination-unrouted>
-                    <button class="btn btn-success" (click)="generate(10)">Generar 10 usuarios</button>
+                    <button class="btn btn-success" (click)="generate(10)">Generar 10 cuentas</button>
                     <h5 class="text-muted">TOTAL REGISTROS {{userPage.totalElements}}</h5>
      
             </div>
 
             <div class="col-md text-start">
                 <h5 class="text-muted" *ngIf="filter!=''">Filtrando por {{filter}} (borrar para resetear)</h5>
-                <button class="btn btn-outline-danger" *ngIf="tipousuarioFilter!=0" (click)="setFilterByTipousuario(0)">
-                    <i class="bi bi-x-circle"></i> Quitar filtro de tipousuario {{tipousuarioFilter}} </button>
+                <button class="btn btn-outline-danger" *ngIf="tipocuentaFilter!=0" (click)="setFilterByTipocuenta(0)">
+                    
+                    <i class="bi bi-x-circle"></i> Quitar filtro de tipocuenta {{tipocuentaFilter}} </button>
+
+                    <button class="btn btn-outline-danger" *ngIf="idUsuarioFilter!=0" (click)="setFilterByUsuario(0)">
+                    
+                        <i class="bi bi-x-circle"></i> Quitar filtro de usuario {{idUsuarioFilter}} </button>
             </div>
 
             <table class="table table-bordered table-striped mt-4">
                 <thead>
                     <tr>
                         <th (click)="setOrder('id')">ID</th>
-                        <th (click)="setOrder('dni')">DNI</th>
-                        <th (click)="setOrder('nombre')">NOMBRE</th>
-                        <th (click)="setOrder('apellido1')">APELLIDO1</th>
-                        <th (click)="setOrder('apellido2')">APELLIDO2</th>
-                        <th (click)="setOrder('login')">LOGIN</th>
-                        <th (click)="setOrder('email')">EMAIL</th>
-                        <th (click)="setOrder('tipousuario.id')">TIPOUSUARIO</th>
+                        <th (click)="setOrder('fechacreacion')">FECHA CREACIÓN</th>
+                        <th (click)="setOrder('usuario.id')">USUARIO</th>
+                        <th (click)="setOrder('tipocuenta.id')">TIPOCUENTA</th>
+                        <th (click)="setOrder('iban')">IBAN</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let usuario of this.getPageContent()">
-                        <td>{{usuario.id}}</td>
-                        <td>{{usuario.dni}}</td>
-                        <td>{{usuario.nombre}}</td>
-                        <td>{{usuario.apellido1}}</td>
-                        <td>{{usuario.apellido2}}</td>
-                        <td>{{usuario.login}}</td>
-                        <td>{{usuario.email}}</td>
-                        <td (click)="setFilterByTipousuario(usuario.tipousuario.id)">
-                            {{usuario.tipousuario.id}}-{{usuario.tipousuario.nombre}}</td>
-                        <td>
-                            <div class="btn-group" role="group" aria-label="Herramientas">
+                    <tr *ngFor="let cuenta of this.getPageContent()">
+                        <td>{{cuenta.id}}</td>
+                        <td>{{cuenta.fechacreacion}}</td>
+                        <td (click)="setFilterByUsuario(cuenta.usuario.id)">
+                            {{cuenta.usuario.id}}-{{cuenta.usuario.nombre}}</td>
+                        
+                        <td (click)="setFilterByTipocuenta(cuenta.tipocuenta.id)">
+                            {{cuenta.tipocuenta.id}}-{{cuenta.tipocuenta.nombre}}</td>
+                        
+                        <td>{{cuenta.iban}}</td>
+                            <td><div class="btn-group" role="group" aria-label="Herramientas">
                                 <button class="btn btn-sm btn-primary"
-                                    [routerLink]="['/admin/usuario/view',usuario.id]">
+                                    [routerLink]="['/admin/cuenta/view',cuenta.id]">
                                     <fa-icon [icon]="faEye"></fa-icon>
                                 </button>
                                 <button class="btn btn-sm btn-warning"
-                                    [routerLink]="['/admin/usuario/edit',usuario.id]">
+                                    [routerLink]="['/admin/cuenta/edit',cuenta.id]">
                                     <fa-icon [icon]="faUserPen"></fa-icon>
                                 </button>
                                 <button class="btn btn-sm btn-danger"
-                                    [routerLink]="['/admin/usuario/remove',usuario.id]">
+                                    [routerLink]="['/admin/cuenta/remove',cuenta.id]">
                                     <fa-icon [icon]="faTrash"></fa-icon>
                                 </button>
-                            </div>
-                        </td>
+                            </div></td>
                     </tr>
                 </tbody>
             </table>
@@ -80,7 +80,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <h4>Se han generado 10 usuarios</h4>
+            <h4>Se han generado 10 cuentas</h4>
             {{generateModalContent}}
         </div>
         <div class="modal-footer">

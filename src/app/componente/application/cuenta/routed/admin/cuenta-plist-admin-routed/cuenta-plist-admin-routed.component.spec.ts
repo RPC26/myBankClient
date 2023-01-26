@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { UsuarioPlistAdminRoutedComponent } from './usuario-plist-admin-routed.component';
+import { CuentaPlistAdminRoutedComponent } from './cuenta-plist-admin-routed.component';
 
-describe('ResolutionPlistAdminRoutedComponent', () => {
-  let component: UsuarioPlistAdminRoutedComponent;
-  let fixture: ComponentFixture<UsuarioPlistAdminRoutedComponent>;
+describe('CuentaPlistAdminRoutedComponent', () => {
+  let component: CuentaPlistAdminRoutedComponent;
+  let fixture: ComponentFixture<CuentaPlistAdminRoutedComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UsuarioPlistAdminRoutedComponent ]
+      declarations: [ CuentaPlistAdminRoutedComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UsuarioPlistAdminRoutedComponent);
+    fixture = TestBed.createComponent(CuentaPlistAdminRoutedComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

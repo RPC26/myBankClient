@@ -1,0 +1,33 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col">
+      <h1 class="text-center mb-5">Lista de tipos de cuenta</h1>
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Porcentaje Beneficio</th>
+            <th>Máximo Negativo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ITipocuenta of this.getPlistContent()">
+            <td>{{ITipocuenta.id}}</td>
+            <td>{{ITipocuenta.nombre}}</td>
+            <td>{{ITipocuenta.porcentajebeneficio}}</td>
+            <td>{{ITipocuenta.maxnegativo}}</td>
+
+            <td>
+              <div class="btn-group" role="group" aria-label="Herramientas">
+                <button class="btn btn-sm btn-primary" (click)="setSelectedTipoCuenta(ITipocuenta.id)">
+                  Seleccionar
+                </button>
+              </div>
+          </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

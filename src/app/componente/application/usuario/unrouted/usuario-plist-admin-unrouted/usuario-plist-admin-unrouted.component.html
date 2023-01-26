@@ -1,0 +1,57 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <h1 class="text-center mb-5">USUARIOS</h1>
+            <div class="col-md text-end d-flex justify-content-center align-items-center mb-3">
+                <app-search-unrouted [placeHolder]="'Buscar usuario'" (onSearch)="setFilter( $event )">
+                </app-search-unrouted>
+                <app-dropdown-register-page class="mx-2" [PageSize]="this.getPageRegister()"
+                    (eeRpp)="this.setRpp($event)">
+                </app-dropdown-register-page>
+                <button type="button" class="btn btn-warning" [routerLink]="['/admin/usuario/new']">Crear
+                    Usuario</button>
+            </div>
+
+
+            <div class="col-md text-start">
+                <h5 class="text-muted" *ngIf="filter!=''">Filtrando por {{filter}} (borrar para resetear)</h5>
+                <button class="btn btn-outline-danger" *ngIf="tipousuarioFilter!=0" (click)="setFilterByTipousuario(0)">
+                    <i class="bi bi-x-circle"></i> Quitar filtro de tipousuario {{tipousuarioFilter}} </button>
+            </div>
+
+            <table class="table table-bordered table-striped mt-4">
+                <thead>
+                    <tr>
+                        <th (click)="setOrder('id')">ID</th>
+                        <th (click)="setOrder('dni')">DNI</th>
+                        <th (click)="setOrder('nombre')">NOMBRE</th>
+                        <th (click)="setOrder('apellido1')">APELLIDO1</th>
+                        <th (click)="setOrder('apellido2')">APELLIDO2</th>
+                        <th (click)="setOrder('login')">LOGIN</th>
+                        <th (click)="setOrder('email')">EMAIL</th>
+                        <th (click)="setOrder('tipousuario.id')">TIPOUSUARIO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let IUsuario of this.getPageContent()">
+                        <td>{{IUsuario.id}}</td>
+                        <td>{{IUsuario.dni}}</td>
+                        <td>{{IUsuario.nombre}}</td>
+                        <td>{{IUsuario.apellido1}}</td>
+                        <td>{{IUsuario.apellido2}}</td>
+                        <td>{{IUsuario.login}}</td>
+                        <td>{{IUsuario.email}}</td>
+                        <td (click)="setFilterByTipousuario(IUsuario.tipousuario.id)">
+                            {{IUsuario.tipousuario.id}}-{{IUsuario.tipousuario.nombre}}</td>
+
+                        <div class="btn-group" role="group" aria-label="Herramientas">
+                            <button class="btn btn-sm btn-primary" (click)="setSelectedUsuario(IUsuario.id)">
+                                Seleccionar
+                            </button>
+                        </div>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

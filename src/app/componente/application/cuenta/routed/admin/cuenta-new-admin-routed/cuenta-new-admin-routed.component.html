@@ -1,0 +1,154 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col">
+      <h1 class="text-center mb-5">Creación de Cuenta</h1>
+
+      <form novalidate [formGroup]="oForm" *ngIf="oForm" (ngSubmit)="onSubmit()">
+
+        <div class="mb-3 row">
+          <label for="inputID" class="col-sm-2 col-form-label">ID</label>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" id="inputID" formControlName="id" readonly>
+          </div>
+        </div>
+
+
+        <div class="mb-3 row">
+          <label for="inputusuario" class="col-sm-2 col-form-label">Usuario</label>
+          <div class="col-sm-6 has-validation">
+            <div class="input-group">
+              <span class="input-group-text">Descripcion de la ajena</span>
+              <input type="number" class="form-control" formControlName="id_usuario" [ngClass]="{'is-valid' : 
+              oForm.controls.id_usuario.dirty && !oForm.controls.id_usuario.errors?.['required'] &&
+               !oForm.controls.id_usuario.errors?.['pattern'],
+                'is-invalid' :  (oForm.controls.id_usuario.dirty &&  oForm.controls.id_usuario.errors?.['required'] )
+                || ( oForm.controls.id_usuario.dirty &&  oForm.controls.id_usuario.errors?.['pattern'])}">
+              <button type="button" class="btn btn-primary" (click)="showUsuarioModal()">Buscar</button>
+            </div>
+            <div class="text-danger"
+              *ngIf="oForm.controls.id_usuario.dirty &&  oForm.controls.id_usuario.errors?.['required']">
+              El campo es obligatorio.
+            </div>
+            <div class="text-danger"
+              *ngIf="oForm.controls.id_usuario.dirty &&  oForm.controls.id_usuario.errors?.['pattern']">
+              El campo ha de ser un entrero de máximo 6 dígitos.
+            </div>
+          </div>
+        </div>
+
+
+        <div class="mb-3 row">
+          <label for="inputtipocuenta" class="col-sm-2 col-form-label">Tipo cuenta</label>
+          <div class="col-sm-6 has-validation">
+            <div class="input-group">
+              <span class="input-group-text">Descripcion de la ajena</span>
+              <input type="number" class="form-control" formControlName="id_tipocuenta" [ngClass]="{'is-valid' : 
+              oForm.controls.id_tipocuenta.dirty && !oForm.controls.id_tipocuenta.errors?.['required'] &&
+               !oForm.controls.id_tipocuenta.errors?.['pattern'],
+                'is-invalid' :  (oForm.controls.id_tipocuenta.dirty &&  oForm.controls.id_tipocuenta.errors?.['required'] )
+                || ( oForm.controls.id_tipocuenta.dirty &&  oForm.controls.id_tipocuenta.errors?.['pattern'])}">
+              <button type="button" class="btn btn-primary" (click)="showTipocuentaModal()">Buscar</button>
+            </div>
+            <div class="text-danger"
+              *ngIf="oForm.controls.id_tipocuenta.dirty &&  oForm.controls.id_tipocuenta.errors?.['required']">
+              El campo es obligatorio.
+            </div>
+            <div class="text-danger"
+              *ngIf="oForm.controls.id_tipocuenta.dirty &&  oForm.controls.id_tipocuenta.errors?.['pattern']">
+              El campo ha de ser un entrero de máximo 6 dígitos.
+            </div>
+          </div>
+        </div>
+        
+
+        <div class="mb-3 row">
+          <label for="inputiban" class="col-sm-2 col-form-label">IBAN</label>
+          <div class="col-sm-4 has-validation">
+            <input type="text" class="form-control" [ngClass]="{'is-valid' : oForm.controls.iban.dirty && !oForm.controls.iban.errors?.['required'] &&
+            oForm.controls.iban.dirty && !oForm.controls.iban.errors?.['minlength'] 
+              && oForm.controls.iban.dirty && !oForm.controls.iban.errors?.['maxlength'],
+              'is-invalid' :  oForm.controls.iban.dirty &&  oForm.controls.iban.errors?.['minlength'] 
+              ||  oForm.controls.iban.dirty &&  oForm.controls.iban.errors?.['maxlength'] ||  
+              oForm.controls.iban.dirty &&  oForm.controls.iban.errors?.['required']}" id="inputiban"
+              formControlName="iban">
+            <div id="inputibanFeedback" class="invalid-feedback"
+              *ngIf="oForm.controls.iban.dirty &&  oForm.controls.iban.errors?.['minlength']">
+              La longitud mínima es de 5 caracteres.
+            </div>
+            <div id="inputibanFeedback" class="invalid-feedback"
+              *ngIf="oForm.controls.iban.dirty &&  oForm.controls.iban.errors?.['maxlength']">
+              La longitud máxima es de 10 caracteres.
+            </div>
+            <div id="inputibanFeedback" class="invalid-feedback"
+              *ngIf="oForm.controls.iban.dirty &&  oForm.controls.iban.errors?.['required']">
+              El campo es obligatorio.
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary"
+        [disabled]="oForm.invalid">Guardar</button>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+<div  class="modal fade " [id]="mimodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        {{modalContent}}
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" [id]="usuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <app-usuario-plist-admin-unrouted (usuarioSelected)="setUsario($event)"></app-usuario-plist-admin-unrouted>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Este modal será para seleccionar la ajena de tipo de cuenta. PENDIENTE DE HACER-->
+<div class="modal fade" [id]="tipocuenta" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <app-tipocuenta-plist-admin-unrouted (tipocuentaSelected)="setTipocuenta($event)"></app-tipocuenta-plist-admin-unrouted>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -24,10 +24,6 @@ export class MenuComponent implements OnInit {
       Events.logout, (data: any) => {
         this.strUserName = '';
       });
-
-
   }
-
-
-
+  
 }

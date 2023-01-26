@@ -1,0 +1,32 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <h1 class="text-center mb-5">Vista de una cuenta</h1>
+            <table class="table table-bordered table-striped">
+                <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{oICuenta?.id}}</td>
+                    </tr>
+                    <tr>
+                        <td>FECHA CREACIÓN</td>
+                        <td>{{oICuenta?.fechacreacion}}</td>
+                    </tr>
+                    <tr>
+                        <td>ID USUARIO</td>
+                        <td>{{oICuenta?.usuario.id}}-{{oICuenta?.usuario.nombre}}</td>
+                    </tr>
+
+                    <tr>
+                        <td>ID USUARIO</td>
+                        <td>{{oICuenta?.tipocuenta.id}}-{{oICuenta?.tipocuenta.nombre}}</td>
+                    </tr>
+                    <tr>
+                        <td>IBAN</td>
+                        <td>{{oICuenta?.iban}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
