@@ -31,7 +31,7 @@
 
                     <i class="bi bi-x-circle"></i> Quitar filtro de cuentaEmisor {{cuentaEmisorFilter}} </button>
 
-                <button class="btn btn-outline-danger" *ngIf="cuentaEmisorFilter!=0"
+                <button class="btn btn-outline-danger" *ngIf="cuentaReceptorFilter!=0"
                     (click)="setFilterByCuentaReceptor(0)">
 
                     <i class="bi bi-x-circle"></i> Quitar filtro de cuentaReceptor {{cuentaReceptorFilter}} </button>
@@ -43,10 +43,9 @@
                         <th (click)="setOrder('id')">ID</th>
                         <th (click)="setOrder('fechahoraoperacion')">FECHA OPERACION</th>
                         <th (click)="setOrder('cantidad')">CANTIDAD</th>
-                        <th (click)="setOrder('tipooperacion.id')">TIPOoperacion</th>
+                        <th (click)="setOrder('tipooperacion.id')">TIPO OPERACION</th>
                         <th (click)="setOrder('cuentaEmisor')">CUENTA EMISOR</th>
                         <th (click)="setOrder('cuentaReceptor')">CUENTA RECEPTOR</th>
-
                     </tr>
                 </thead>
                 <tbody>
@@ -54,29 +53,32 @@
                         <td>{{operacion.id}}</td>
                         <td>{{operacion.fechahoraoperacion}}</td>
                         <td>{{operacion.cantidad}}</td>
-                        <td (click)="setFilterByTipoOperacion(operacion.tipoOperacion.id)">
-                            {{operacion.tipoOperacion.id}}-{{operacion.tipoOperacion.nombre}}</td>
-                        <td>
-                        <td (click)="setFilterByCuentaEmisor(operacion.cuentaEmisor.id)">
-                            {{operacion.cuentaEmisor.id}}-{{operacion.cuentaEmisor.usuario.nombre}}</td>
-                        <td>
-                        <td (click)="setFilterByCuentaReceptor(operacion.cuentaReceptor.id)">
-                            {{operacion.cuentaReceptor.id}}-{{operacion.cuentaReceptor.usuario.nombre}}</td>
-                        <td>
-                            <div class="btn-group" role="group" aria-label="Herramientas">
-                                <button class="btn btn-sm btn-primary"
-                                    [routerLink]="['/admin/operacion/view',operacion.id]">
-                                    <fa-icon [icon]="faEye"></fa-icon>
-                                </button>
-                                <button class="btn btn-sm btn-warning"
-                                    [routerLink]="['/admin/operacion/edit',operacion.id]">
-                                    <fa-icon [icon]="faUserPen"></fa-icon>
-                                </button>
-                                <button class="btn btn-sm btn-danger"
-                                    [routerLink]="['/admin/operacion/remove',operacion.id]">
-                                    <fa-icon [icon]="faTrash"></fa-icon>
-                                </button>
-                            </div>
+                        <td (click)="setFilterByTipoOperacion(operacion.tipooperacion.id)">
+                            {{operacion.tipooperacion.id}}-{{operacion.tipooperacion.nombre}}</td>
+                        
+                        <td (click)="setFilterByCuentaEmisor(operacion.emisorCuentaEntity.id)">
+                            {{operacion.emisorCuentaEntity.id}}-{{operacion.emisorCuentaEntity.usuario.nombre}}</td>
+                        
+                        <td *ngIf="operacion.receptorCuentaEntity != null" (click)="setFilterByCuentaReceptor(operacion.receptorCuentaEntity.id)">
+                            {{operacion.receptorCuentaEntity.id}}-{{operacion.receptorCuentaEntity.usuario.nombre}}</td>
+                        <td *ngIf="operacion.receptorCuentaEntity == null" (click)="setFilterByCuentaReceptor(operacion.receptorCuentaEntity.id)">
+                            -
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Herramientas">
+                                    <button class="btn btn-sm btn-primary"
+                                        [routerLink]="['/admin/operacion/view',operacion.id]">
+                                        <fa-icon [icon]="faEye"></fa-icon>
+                                    </button>
+                                    <button class="btn btn-sm btn-warning"
+                                        [routerLink]="['/admin/operacion/edit',operacion.id]">
+                                        <fa-icon [icon]="faUserPen"></fa-icon>
+                                    </button>
+                                    <button class="btn btn-sm btn-danger"
+                                        [routerLink]="['/admin/operacion/remove',operacion.id]">
+                                        <fa-icon [icon]="faTrash"></fa-icon>
+                                    </button>
+                                </div>
+                            </td>
                     </tr>
                 </tbody>
             </table>

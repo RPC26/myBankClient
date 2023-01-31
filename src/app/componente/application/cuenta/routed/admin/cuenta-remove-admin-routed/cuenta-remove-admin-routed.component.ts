@@ -41,7 +41,7 @@ export class CuentaRemoveAdminRoutedComponent implements OnInit {
     removeOne() {
         this.oCuentaService.removeOne(this.id).subscribe({
             next: (data: number) => {
-                this.msg = "Usuario " + this.id + " removed";
+                this.msg = "Cuenta " + this.id + " removed";
                 const myModal = new bootstrap.Modal('#removeInfo', {
                     keyboard: false
                   })

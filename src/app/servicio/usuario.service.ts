@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BASE_URL, HTTP_OPTIONS } from 'src/environments/environment';
+import { ISaldoUsuario } from '../model/saldo-interface';
 import { IUsuario, IUsuarioUpdate, IUsuarioPage, IUsuarioCreate } from '../model/usuario-interface';
 
 @Injectable({
@@ -37,6 +38,10 @@ getPage(page: number, size: number, filter: string, id_tipousuario: number, strS
   const  { headers, withCredentials } = HTTP_OPTIONS
 
   return this.oHttp.get<IUsuarioPage>(url, { headers: headers, withCredentials, params });
+}
+
+getSaldo(id: number): Observable<ISaldoUsuario> {
+  return this.oHttp.get<ISaldoUsuario>(`${this.url}/${id}/saldo`, HTTP_OPTIONS);
 }
 
 getOne(id: number): Observable<IUsuario> {

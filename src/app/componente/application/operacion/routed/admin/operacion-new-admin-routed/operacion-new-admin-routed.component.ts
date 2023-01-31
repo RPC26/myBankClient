@@ -24,7 +24,10 @@ export class OperacionNewAdminRoutedComponent implements OnInit {
   modalTitle: string = "";
   modalContent: string = "";
 
-  cuenta: string = "cuentaModal";
+  emisor: string = "emisorModal";
+  tipoEmi: number = 1
+  receptor: string = "receptorModal";
+  tipoRec: number = 2
   tipooperacion: string = "tipooperacionModal"
 
   constructor(
@@ -33,6 +36,14 @@ export class OperacionNewAdminRoutedComponent implements OnInit {
     private oFormBuilder: FormBuilder,
     private oCryptoService: CryptoService,
   ) {
+    this.oForm = <FormGroup>this.oFormBuilder.group({
+      id: [''],
+      fechahoraoperacion: ['', Validators.required],
+      cantidad: ['', Validators.required],
+      tipooperacion: ['', Validators.required],
+      emisorCuentaEntity: ['', Validators.required],
+      receptorCuentaEntity: ['', ]
+    });
   }
 
   ngOnInit() {
@@ -40,9 +51,9 @@ export class OperacionNewAdminRoutedComponent implements OnInit {
       id: [''],
       fechahoraoperacion: ['', Validators.required],
       cantidad: ['', Validators.required],
-      id_tipooperacion: ['', Validators.required],
-      cuentaEmisor: ['', Validators.required],
-      cuentaReceptor: ['', Validators.required]
+      tipooperacion: ['', Validators.required],
+      emisorCuentaEntity: ['', Validators.required],
+      receptorCuentaEntity: ['', ]
     });
   }
   
@@ -52,35 +63,40 @@ export class OperacionNewAdminRoutedComponent implements OnInit {
       id: this.oForm.value.id,
       fechahoraoperacion: this.oForm.value.fechahoraoperacion,
       cantidad: this.oForm.value.cantidad,
-      tipoOperacion: { id: this.oForm.value.id},
-      cuentaEmisor: { id: this.oForm.value.id},
-      cuentaReceptor: { id: this.oForm.value.id}
+      tipooperacion: { id: this.oForm.value.tipooperacion},
+      emisorCuentaEntity: { id: this.oForm.value.emisorCuentaEntity}
+    }
 
+    if (this.oForm.value.receptorCuentaEntity) {
+      this.oOperacionCreate = {
+        ...this.oOperacionCreate,
+        receptorCuentaEntity: {id: this.oForm.value.receptorCuentaEntity}
+      }
     }
     if (this.oForm.valid) {
       this.oOperacionService.newOne(this.oOperacionCreate).subscribe({
         next: (data: number) => {
           //open bootstrap modal here
           this.modalTitle = "MYBANK";
-          this.modalContent = "Usuario " + data + " creado";
+          this.modalContent = "Operacion " + data + " creada";
           this.showModal(data);
-        }
+        }, 
       })
     }
 
   }
 
   setCuentaEmisor(id: number) {
-    this.oForm.controls['cuentaEmisor'].setValue(id);
+    this.oForm.controls['emisorCuentaEntity'].setValue(id);
     this.myModal.hide();
   }
 
   setCuentaReceptor(id: number) {
-    this.oForm.controls['cuentaReceptor'].setValue(id);
+    this.oForm.controls['receptorCuentaEntity'].setValue(id);
     this.myModal.hide();
   }
   setTipoOperacion(id: number) {
-    this.oForm.controls['tipoOperacion'].setValue(id);
+    this.oForm.controls['tipooperacion'].setValue(id);
     this.myModal.hide();
   }
 
@@ -88,18 +104,24 @@ export class OperacionNewAdminRoutedComponent implements OnInit {
     this.myModal = new bootstrap.Modal(document.getElementById(this.mimodal), {keyboard: false})
     var myModalEl = document.getElementById(this.mimodal);
     myModalEl.addEventListener('hidden.bs.modal', (): void => {
-      this.oRouter.navigate(['/admin/Operacion/view', data])
+      this.oRouter.navigate(['/admin/operacion/view', data])
     })
     this.myModal.show()
   }
   
-  showUsuarioModal = () => {
-    this.myModal = new bootstrap.Modal(document.getElementById(this.cuenta), {keyboard: false})
+  showEmisorModal = () => {
+    this.myModal = new bootstrap.Modal(document.getElementById(this.emisor), {keyboard: false})
     //var myModalEl = document.getElementById(this.ajena);
     this.myModal.show();   
   }
 
-  showTipocuentaModal = () => {
+  showReceptorModal = () => {
+    this.myModal = new bootstrap.Modal(document.getElementById(this.receptor), {keyboard: false})
+    //var myModalEl = document.getElementById(this.ajena);
+    this.myModal.show();   
+  }
+
+  showTipooperacionModal = () => {
     this.myModal = new bootstrap.Modal(document.getElementById(this.tipooperacion), {keyboard: false})
     //var myModalEl = document.getElementById(this.ajena);
     this.myModal.show();   

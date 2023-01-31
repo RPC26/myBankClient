@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { faEye, faUserPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 
@@ -34,16 +34,17 @@ export class CuentaPlistAdminUnroutedComponent implements OnInit {
     generateModalTitle: string = "";
     generateModalId: string = "modalGenerate";
     generateModalContent: string = "";
-    oCuentaService: CuentaService;
+    
 
     
-    constructor(
+    constructor(private oCuentaService: CuentaService
     ) {
 
     }
 
     @Output() cuentaSelectedEmisor = new EventEmitter<number>();
     @Output() cuentaSelectedReceptor = new EventEmitter<number>();
+    @Input() tipo: number 
 
     
     ngOnInit(): void {

@@ -1,9 +1,9 @@
 <div class="container mt-5">
   <div class="row">
     <div class="col">
-      <h1 class="text-center mb-5">Edición de Usuarios</h1>
+      <h1 class="text-center mb-5">Actualizar Operación</h1>
 
-      <form novalidate [formGroup]="oForm" *ngIf="oForm" (ngSubmit)="onSubmit()">
+      <form novalidate [formGroup]="oForm" (ngSubmit)="onSubmit()">
 
         <div class="mb-3 row">
           <label for="inputID" class="col-sm-2 col-form-label">ID</label>
@@ -13,158 +13,209 @@
         </div>
 
         <div class="mb-3 row">
-          <label for="inputID" class="col-sm-2 col-form-label">Fecha Creacion</label>
-          <div class="col-sm-2">
-            <input type="text" class="form-control" id="inputID" formControlName="fechacreacion" readonly>
-          </div>
-        </div>
-
-        <div class="mb-3 row">
-          <label for="inputid_usuario" class="col-sm-2 col-form-label">Usuario</label>
+          <label for="inputcantidad" class="col-sm-2 col-form-label">Cantidad</label>
           <div class="col-sm-4 has-validation">
-            <input type="text" class="form-control" [ngClass]="{'is-valid' : oForm.controls.id_usuario.dirty && !oForm.controls.id_usuario.errors?.['required'] &&
-            oForm.controls.id_usuario.dirty && !oForm.controls.id_usuario.errors?.['minlength'] 
-              && oForm.controls.id_usuario.dirty && !oForm.controls.id_usuario.errors?.['maxlength'],
-              'is-invalid' :  oForm.controls.id_usuario.dirty &&  oForm.controls.id_usuario.errors?.['minlength'] 
-              ||  oForm.controls.id_usuario.dirty &&  oForm.controls.id_usuario.errors?.['maxlength'] ||  
-              oForm.controls.id_usuario.dirty &&  oForm.controls.id_usuario.errors?.['required']}" id="inputid_usuario"
-              formControlName="id_usuario">
-            <div id="inputid_usuarioFeedback" class="invalid-feedback"
-              *ngIf="oForm.controls.id_usuario.dirty &&  oForm.controls.id_usuario.errors?.['minlength']">
+            <input type="text" class="form-control" [ngClass]="{'is-valid' : oForm.controls.cantidad.dirty && !oForm.controls.cantidad.errors?.['required'] &&
+            oForm.controls.cantidad.dirty && !oForm.controls.cantidad.errors?.['minlength'] 
+              && oForm.controls.cantidad.dirty && !oForm.controls.cantidad.errors?.['maxlength'],
+              'is-invalid' :  oForm.controls.cantidad.dirty &&  oForm.controls.cantidad.errors?.['minlength'] 
+              ||  oForm.controls.cantidad.dirty &&  oForm.controls.cantidad.errors?.['maxlength'] ||  
+              oForm.controls.cantidad.dirty &&  oForm.controls.cantidad.errors?.['required']}" id="inputcantidad"
+              formControlName="cantidad">
+            <div id="inputcantidadFeedback" class="invalid-feedback"
+              *ngIf="oForm.controls.cantidad.dirty &&  oForm.controls.cantidad.errors?.['minlength']">
               La longitud mínima es de 5 caracteres.
             </div>
-            <div id="inputid_usuarioFeedback" class="invalid-feedback"
-              *ngIf="oForm.controls.id_usuario.dirty &&  oForm.controls.id_usuario.errors?.['maxlength']">
+            <div id="inputcantidadFeedback" class="invalid-feedback"
+              *ngIf="oForm.controls.cantidad.dirty &&  oForm.controls.cantidad.errors?.['maxlength']">
               La longitud máxima es de 10 caracteres.
             </div>
-            <div id="inputid_usuarioFeedback" class="invalid-feedback"
-              *ngIf="oForm.controls.id_usuario.dirty &&  oForm.controls.id_usuario.errors?.['required']">
-              El campo es obligatorio.
-            </div>
-          </div>
-        </div>
-
-
-        
-
-        <div class="mb-3 row">
-          <label for="inputid_tipocuenta" class="col-sm-2 col-form-label">Tipo Cuenta</label>
-          <div class="col-sm-4 has-validation">
-            <input type="text" class="form-control" [ngClass]="{'is-valid' : oForm.controls.id_tipocuenta.dirty && !oForm.controls.id_tipocuenta.errors?.['required'] &&
-            oForm.controls.id_tipocuenta.dirty && !oForm.controls.id_tipocuenta.errors?.['minlength'] 
-              && oForm.controls.id_tipocuenta.dirty && !oForm.controls.id_tipocuenta.errors?.['maxlength'],
-              'is-invalid' :  oForm.controls.id_tipocuenta.dirty &&  oForm.controls.id_tipocuenta.errors?.['minlength'] 
-              ||  oForm.controls.id_tipocuenta.dirty &&  oForm.controls.id_tipocuenta.errors?.['maxlength'] ||  
-              oForm.controls.id_tipocuenta.dirty &&  oForm.controls.id_tipocuenta.errors?.['required']}" id="inputid_tipocuenta"
-              formControlName="id_tipocuenta">
-            <div id="inputid_tipocuentaFeedback" class="invalid-feedback"
-              *ngIf="oForm.controls.id_tipocuenta.dirty &&  oForm.controls.id_tipocuenta.errors?.['minlength']">
-              La longitud mínima es de 5 caracteres.
-            </div>
-            <div id="inputid_tipocuentaFeedback" class="invalid-feedback"
-              *ngIf="oForm.controls.id_tipocuenta.dirty &&  oForm.controls.id_tipocuenta.errors?.['maxlength']">
-              La longitud máxima es de 10 caracteres.
-            </div>
-            <div id="inputid_tipocuentaFeedback" class="invalid-feedback"
-              *ngIf="oForm.controls.id_tipocuenta.dirty &&  oForm.controls.id_tipocuenta.errors?.['required']">
+            <div id="inputcantidadFeedback" class="invalid-feedback"
+              *ngIf="oForm.controls.cantidad.dirty &&  oForm.controls.cantidad.errors?.['required']">
               El campo es obligatorio.
             </div>
           </div>
         </div>
 
         <div class="mb-3 row">
-          <label for="inputiban" class="col-sm-2 col-form-label">IBAN</label>
+          <label for="inputfechahoraoperacion" class="col-sm-2 col-form-label">Fecha Operación</label>
           <div class="col-sm-4 has-validation">
-            <input type="text" class="form-control" [ngClass]="{'is-valid' : oForm.controls.iban.dirty && !oForm.controls.iban.errors?.['required'] &&
-            oForm.controls.iban.dirty && !oForm.controls.iban.errors?.['minlength'] 
-              && oForm.controls.iban.dirty && !oForm.controls.iban.errors?.['maxlength'],
-              'is-invalid' :  oForm.controls.iban.dirty &&  oForm.controls.iban.errors?.['minlength'] 
-              ||  oForm.controls.iban.dirty &&  oForm.controls.iban.errors?.['maxlength'] ||  
-              oForm.controls.iban.dirty &&  oForm.controls.iban.errors?.['required']}" id="inputiban"
-              formControlName="iban">
-            <div id="inputibanFeedback" class="invalid-feedback"
-              *ngIf="oForm.controls.iban.dirty &&  oForm.controls.iban.errors?.['minlength']">
+            <input type="datetime-local" class="form-control" [ngClass]="{'is-valid' : oForm.controls.fechahoraoperacion.dirty && !oForm.controls.fechahoraoperacion.errors?.['required'] &&
+            oForm.controls.fechahoraoperacion.dirty && !oForm.controls.fechahoraoperacion.errors?.['minlength'] 
+              && oForm.controls.fechahoraoperacion.dirty && !oForm.controls.fechahoraoperacion.errors?.['maxlength'],
+              'is-invalid' :  oForm.controls.fechahoraoperacion.dirty &&  oForm.controls.fechahoraoperacion.errors?.['minlength'] 
+              ||  oForm.controls.fechahoraoperacion.dirty &&  oForm.controls.fechahoraoperacion.errors?.['maxlength'] ||  
+              oForm.controls.fechahoraoperacion.dirty &&  oForm.controls.fechahoraoperacion.errors?.['required']}"
+              id="inputfechahoraoperacion" formControlName="fechahoraoperacion">
+            <div id="inputfechahoraoperacionFeedback" class="invalid-feedback"
+              *ngIf="oForm.controls.fechahoraoperacion.dirty &&  oForm.controls.fechahoraoperacion.errors?.['minlength']">
               La longitud mínima es de 5 caracteres.
             </div>
-            <div id="inputibanFeedback" class="invalid-feedback"
-              *ngIf="oForm.controls.iban.dirty &&  oForm.controls.iban.errors?.['maxlength']">
+            <div id="inputfechahoraoperacionFeedback" class="invalid-feedback"
+              *ngIf="oForm.controls.fechahoraoperacion.dirty &&  oForm.controls.fechahoraoperacion.errors?.['maxlength']">
               La longitud máxima es de 10 caracteres.
             </div>
-            <div id="inputibanFeedback" class="invalid-feedback"
-              *ngIf="oForm.controls.iban.dirty &&  oForm.controls.iban.errors?.['required']">
+            <div id="inputfechahoraoperacionFeedback" class="invalid-feedback"
+              *ngIf="oForm.controls.fechahoraoperacion.dirty &&  oForm.controls.fechahoraoperacion.errors?.['required']">
               El campo es obligatorio.
             </div>
           </div>
-        </div>
 
-        
+          <div class="mb-3 row">
+            <label for="inputUsertype" class="col-sm-2 col-form-label">Tipo de Operación</label>
+            <div class="col-sm-6 has-validation">
+              <div class="input-group">
+                <span class="input-group-text">Descripcion de la ajena</span>
+                <input type="number" class="form-control" formControlName="tipooperacion" [ngClass]="{'is-valid' : 
+              oForm.controls.tipooperacion.dirty && !oForm.controls.tipooperacion.errors?.['required'] &&
+               !oForm.controls.tipooperacion.errors?.['pattern'],
+                'is-invalid' :  (oForm.controls.tipooperacion.dirty &&  oForm.controls.tipooperacion.errors?.['required'] )
+                || ( oForm.controls.tipooperacion.dirty &&  oForm.controls.tipooperacion.errors?.['pattern'])}">
+                <button type="button" class="btn btn-primary" (click)="showTipocuentaModal()">Buscar</button>
+              </div>
+              <div class="text-danger"
+                *ngIf="oForm.controls.tipooperacion.dirty &&  oForm.controls.tipooperacion.errors?.['required']">
+                El campo es obligatorio.
+              </div>
+              <div class="text-danger"
+                *ngIf="oForm.controls.tipooperacion.dirty &&  oForm.controls.tipooperacion.errors?.['pattern']">
+                El campo ha de ser un entrero de máximo 6 dígitos.
+              </div>
+            </div>
+          </div>
 
-        
+          <div class="mb-3 row">
+            <label for="inputUsertype" class="col-sm-2 col-form-label">Cuenta Emisor</label>
+            <div class="col-sm-6 has-validation">
+              <div class="input-group">
+                <span class="input-group-text">Descripcion de la ajena</span>
+                <input type="number" class="form-control" formControlName="emisorCuentaEntity" [ngClass]="{'is-valid' : 
+              oForm.controls.emisorCuentaEntity.dirty && !oForm.controls.emisorCuentaEntity.errors?.['required'] &&
+               !oForm.controls.emisorCuentaEntity.errors?.['pattern'],
+                'is-invalid' :  (oForm.controls.emisorCuentaEntity.dirty &&  oForm.controls.emisorCuentaEntity.errors?.['required'] )
+                || ( oForm.controls.emisorCuentaEntity.dirty &&  oForm.controls.emisorCuentaEntity.errors?.['pattern'])}">
+                <button type="button" class="btn btn-primary" (click)="showEmisorModal()">Buscar</button>
+              </div>
+              <div class="text-danger"
+                *ngIf="oForm.controls.emisorCuentaEntity.dirty &&  oForm.controls.emisorCuentaEntity.errors?.['required']">
+                El campo es obligatorio.
+              </div>
+              <div class="text-danger"
+                *ngIf="oForm.controls.emisorCuentaEntity.dirty &&  oForm.controls.emisorCuentaEntity.errors?.['pattern']">
+                El campo ha de ser un entrero de máximo 6 dígitos.
+              </div>
+            </div>
+          </div>
 
-        <button type="submit" class="btn btn-primary"
-        [disabled]="oForm.invalid">Guardar</button>
+          <div class="mb-3 row">
+            <label for="inputUsertype" class="col-sm-2 col-form-label">Cuenta Receptor</label>
+            <div class="col-sm-6 has-validation">
+              <div class="input-group">
+                <span class="input-group-text">Descripcion de la ajena</span>
+                <input type="number" class="form-control" formControlName="receptorCuentaEntity" [ngClass]="{'is-valid' : 
+              oForm.controls.receptorCuentaEntity.dirty && !oForm.controls.receptorCuentaEntity.errors?.['required'] &&
+               !oForm.controls.receptorCuentaEntity.errors?.['pattern'],
+                'is-invalid' :  (oForm.controls.receptorCuentaEntity.dirty &&  oForm.controls.receptorCuentaEntity.errors?.['required'] )
+                || ( oForm.controls.receptorCuentaEntity.dirty &&  oForm.controls.receptorCuentaEntity.errors?.['pattern'])}">
+                <button type="button" class="btn btn-primary" (click)="showReceptorModal()">Buscar</button>
+              </div>
+              <div class="text-danger"
+                *ngIf="oForm.controls.receptorCuentaEntity.dirty &&  oForm.controls.receptorCuentaEntity.errors?.['required']">
+                El campo es obligatorio.
+              </div>
+              <div class="text-danger"
+                *ngIf="oForm.controls.receptorCuentaEntity.dirty &&  oForm.controls.receptorCuentaEntity.errors?.['pattern']">
+                El campo ha de ser un entrero de máximo 6 dígitos.
+              </div>
+            </div>
 
+           
+          </div>
+
+         
+        </div> <button type="submit" class="btn btn-primary" [disabled]="oForm.invalid">Guardar</button>
       </form>
-
     </div>
   </div>
-</div>
-
-<div class="modal fade" [id]="mimodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-
-        {{modalContent}}
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 
-<div class="modal fade" [id]="ajena" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
+  <div class="modal fade" [id]="mimodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
 
-        <app-usuario-plist-admin-unrouted (usuarioSelected)="setUsario($event)"></app-usuario-plist-admin-unrouted>
+          {{modalContent}}
 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- Este modal será para seleccionar la ajena de tipo de cuenta. PENDIENTE DE HACER-->
-<div class="modal fade" [id]="ajena" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
+  <div class="modal fade" [id]="tipooperacion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
 
-        <app-usuario-plist-admin-unrouted (tipoCuentaSelected)="setTipocuenta($event)"></app-usuario-plist-admin-unrouted>
+          <app-tipooperacion-plist-admin-unrouted
+            (tipoOperacionSelected)="setTipoOperacion($event)"></app-tipooperacion-plist-admin-unrouted>
 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+
+  <!-- Este modal será para seleccionar la ajena de tipo de Operacion. PENDIENTE DE HACER-->
+  <div class="modal fade" [id]="emisor" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <app-cuenta-plist-admin-unrouted (cuentaSelectedReceptor)="setCuentaReceptor($event)" [tipo]="tipoEmi"
+            (cuentaSelectedEmisor)="setCuentaEmisor($event)"></app-cuenta-plist-admin-unrouted>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   <!-- Este modal será para seleccionar la ajena de tipo de Operacion. PENDIENTE DE HACER-->
+   <div class="modal fade" [id]="receptor" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <app-cuenta-plist-admin-unrouted (cuentaSelectedReceptor)="setCuentaReceptor($event)" [tipo]="tipoRec"
+            (cuentaSelectedEmisor)="setCuentaEmisor($event)"></app-cuenta-plist-admin-unrouted>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>

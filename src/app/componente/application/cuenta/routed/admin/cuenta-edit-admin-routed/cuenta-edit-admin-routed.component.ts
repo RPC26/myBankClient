@@ -37,7 +37,7 @@ export class CuentaEditAdminRoutedComponent implements OnInit {
       fechacreacion: [''],
       id_tipocuenta: ['', [Validators.required]],
       id_usuario: ['', Validators.required],
-      iban: [''],
+      iban: ['', Validators.pattern("^[E][S][1][2][\\s]\\d{4}[\\s]\\d{4}[\\s]\\d{2}[\\s]\\d{8}$")],
     });
   }
 
@@ -66,7 +66,7 @@ export class CuentaEditAdminRoutedComponent implements OnInit {
           fechacreacion: [data.fechacreacion],
           id_tipocuenta: [data.tipocuenta.id, [Validators.required]],
           id_usuario: [data.usuario.id, Validators.required],
-          iban: [data.iban],
+          iban: [data.iban, Validators.pattern("^[E][S][1][2][\\s]\\d{4}[\\s]\\d{4}[\\s]\\d{2}[\\s]\\d{8}$")],
 
         });
       }

@@ -40,7 +40,7 @@ export class CuentaNewAdminRoutedComponent implements OnInit {
       id: [''],
       id_tipocuenta: ['', [Validators.required]],
       id_usuario: ['', Validators.required],
-      iban: [''],
+      iban: ['', Validators.pattern("^[E][S][1][2][\\s]\\d{4}[\\s]\\d{4}[\\s]\\d{2}[\\s]\\d{8}$")],
 
     });
   }

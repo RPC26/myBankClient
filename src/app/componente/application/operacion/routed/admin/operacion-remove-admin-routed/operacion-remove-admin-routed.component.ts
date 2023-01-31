@@ -15,7 +15,7 @@ export class OperacionRemoveAdminRoutedComponent implements OnInit {
 
     id: number = 0;
     oIOperacion: IOperacion = null;
-    msg: string = "";
+    msg: string = "Operación eliminada";
 
     constructor(
         protected oLocation: Location,

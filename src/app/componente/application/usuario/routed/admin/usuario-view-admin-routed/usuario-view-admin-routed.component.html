@@ -38,6 +38,25 @@
                     </tr>
                 </tbody>
             </table>
+            
+            <h1 *ngIf="oISaldoUsuario != null" class="text-center mb-3 mt-4">Cuentas usuario</h1>
+            <div *ngFor="let cuenta of oISaldoUsuario">
+                
+                <table class="table table-bordered table-striped mt-5">
+                    <thead>
+                        <th>ID Cuenta</th>
+                        <th>Saldo</th>
+                        <th>Saldo beneficio</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{cuenta.idCuenta}}</td>
+                        <td>{{cuenta.saldoReal}}</td>
+                        <td>{{cuenta.saldoBeneficio}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

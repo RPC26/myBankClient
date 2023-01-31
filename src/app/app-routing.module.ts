@@ -5,6 +5,7 @@ import { CuentaNewAdminRoutedComponent } from './componente/application/cuenta/r
 import { CuentaPlistAdminRoutedComponent } from './componente/application/cuenta/routed/admin/cuenta-plist-admin-routed/cuenta-plist-admin-routed.component';
 import { CuentaRemoveAdminRoutedComponent } from './componente/application/cuenta/routed/admin/cuenta-remove-admin-routed/cuenta-remove-admin-routed.component';
 import { CuentaViewAdminRoutedComponent } from './componente/application/cuenta/routed/admin/cuenta-view-admin-routed/cuenta-view-admin-routed.component';
+import { OperacionEditAdminRoutedComponent } from './componente/application/operacion/routed/admin/operacion-edit-admin-routed/operacion-edit-admin-routed.component';
 import { OperacionNewAdminRoutedComponent } from './componente/application/operacion/routed/admin/operacion-new-admin-routed/operacion-new-admin-routed.component';
 import { OperacionPlistAdminRoutedComponent } from './componente/application/operacion/routed/admin/operacion-plist-admin-routed/operacion-plist-admin-routed.component';
 import { OperacionRemoveAdminRoutedComponent } from './componente/application/operacion/routed/admin/operacion-remove-admin-routed/operacion-remove-admin-routed.component';
@@ -36,11 +37,12 @@ const routes: Routes = [
   {path: "admin/cuenta/remove/:id", component: CuentaRemoveAdminRoutedComponent},
   {path: "admin/cuenta/new", component: CuentaNewAdminRoutedComponent},
   
+  
   {path: "plist/operacion", component: OperacionPlistAdminRoutedComponent},
   {path: "admin/operacion/view/:id", component: OperacionViewAdminRoutedComponent},
+  {path: "admin/operacion/edit/:id", component: OperacionEditAdminRoutedComponent},
   {path: "admin/operacion/remove/:id", component: OperacionRemoveAdminRoutedComponent},
-  {path: "admin/operacion/new/", component: OperacionNewAdminRoutedComponent},
-  
+  {path: "admin/operacion/new", component: OperacionNewAdminRoutedComponent},
 ];
 
 @NgModule({

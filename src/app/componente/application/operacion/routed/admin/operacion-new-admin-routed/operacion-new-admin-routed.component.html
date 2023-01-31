@@ -15,7 +15,7 @@
         <div class="mb-3 row">
           <label for="inputcantidad" class="col-sm-2 col-form-label">Cantidad</label>
           <div class="col-sm-4 has-validation">
-            <input type="text" class="form-control" [ngClass]="{'is-valid' : oForm.controls.cantidad.dirty && !oForm.controls.cantidad.errors?.['required'] &&
+            <input type="number" class="form-control" [ngClass]="{'is-valid' : oForm.controls.cantidad.dirty && !oForm.controls.cantidad.errors?.['required'] &&
             oForm.controls.cantidad.dirty && !oForm.controls.cantidad.errors?.['minlength'] 
               && oForm.controls.cantidad.dirty && !oForm.controls.cantidad.errors?.['maxlength'],
               'is-invalid' :  oForm.controls.cantidad.dirty &&  oForm.controls.cantidad.errors?.['minlength'] 
@@ -40,7 +40,7 @@
         <div class="mb-3 row">
           <label for="inputfechahoraoperacion" class="col-sm-2 col-form-label">Fecha Operación</label>
           <div class="col-sm-4 has-validation">
-            <input type="date" class="form-control" [ngClass]="{'is-valid' : oForm.controls.fechahoraoperacion.dirty && !oForm.controls.fechahoraoperacion.errors?.['required'] &&
+            <input type="datetime-local" class="form-control" [ngClass]="{'is-valid' : oForm.controls.fechahoraoperacion.dirty && !oForm.controls.fechahoraoperacion.errors?.['required'] &&
             oForm.controls.fechahoraoperacion.dirty && !oForm.controls.fechahoraoperacion.errors?.['minlength'] 
               && oForm.controls.fechahoraoperacion.dirty && !oForm.controls.fechahoraoperacion.errors?.['maxlength'],
               'is-invalid' :  oForm.controls.fechahoraoperacion.dirty &&  oForm.controls.fechahoraoperacion.errors?.['minlength'] 
@@ -66,19 +66,19 @@
             <div class="col-sm-6 has-validation">
               <div class="input-group">
                 <span class="input-group-text">Descripcion de la ajena</span>
-                <input type="number" class="form-control" formControlName="tipoOperacion" [ngClass]="{'is-valid' : 
-              oForm.controls.tipoOperacion.dirty && !oForm.controls.tipoOperacion.errors?.['required'] &&
-               !oForm.controls.tipoOperacion.errors?.['pattern'],
-                'is-invalid' :  (oForm.controls.tipoOperacion.dirty &&  oForm.controls.tipoOperacion.errors?.['required'] )
-                || ( oForm.controls.tipoOperacion.dirty &&  oForm.controls.tipoOperacion.errors?.['pattern'])}">
-                <button type="button" class="btn btn-primary" (click)="showTipocuentaModal()">Buscar</button>
+                <input type="number" class="form-control" formControlName="tipooperacion" [ngClass]="{'is-valid' : 
+              oForm.controls.tipooperacion.dirty && !oForm.controls.tipooperacion.errors?.['required'] &&
+               !oForm.controls.tipooperacion.errors?.['pattern'],
+                'is-invalid' :  (oForm.controls.tipooperacion.dirty &&  oForm.controls.tipooperacion.errors?.['required'] )
+                || ( oForm.controls.tipooperacion.dirty &&  oForm.controls.tipooperacion.errors?.['pattern'])}">
+                <button type="button" class="btn btn-primary" (click)="showTipooperacionModal()">Buscar</button>
               </div>
               <div class="text-danger"
-                *ngIf="oForm.controls.tipoOperacion.dirty &&  oForm.controls.tipoOperacion.errors?.['required']">
+                *ngIf="oForm.controls.tipooperacion.dirty &&  oForm.controls.tipooperacion.errors?.['required']">
                 El campo es obligatorio.
               </div>
               <div class="text-danger"
-                *ngIf="oForm.controls.tipoOperacion.dirty &&  oForm.controls.tipoOperacion.errors?.['pattern']">
+                *ngIf="oForm.controls.tipooperacion.dirty &&  oForm.controls.tipooperacion.errors?.['pattern']">
                 El campo ha de ser un entrero de máximo 6 dígitos.
               </div>
             </div>
@@ -89,19 +89,19 @@
             <div class="col-sm-6 has-validation">
               <div class="input-group">
                 <span class="input-group-text">Descripcion de la ajena</span>
-                <input type="number" class="form-control" formControlName="cuentaEmisor" [ngClass]="{'is-valid' : 
-              oForm.controls.cuentaEmisor.dirty && !oForm.controls.cuentaEmisor.errors?.['required'] &&
-               !oForm.controls.cuentaEmisor.errors?.['pattern'],
-                'is-invalid' :  (oForm.controls.cuentaEmisor.dirty &&  oForm.controls.cuentaEmisor.errors?.['required'] )
-                || ( oForm.controls.cuentaEmisor.dirty &&  oForm.controls.cuentaEmisor.errors?.['pattern'])}">
-                <button type="button" class="btn btn-primary" (click)="setCuentaEmisor(id)">Buscar</button>
+                <input type="number" class="form-control" formControlName="emisorCuentaEntity" [ngClass]="{'is-valid' : 
+              oForm.controls.emisorCuentaEntity.dirty && !oForm.controls.emisorCuentaEntity.errors?.['required'] &&
+               !oForm.controls.emisorCuentaEntity.errors?.['pattern'],
+                'is-invalid' :  (oForm.controls.emisorCuentaEntity.dirty &&  oForm.controls.emisorCuentaEntity.errors?.['required'] )
+                || ( oForm.controls.emisorCuentaEntity.dirty &&  oForm.controls.emisorCuentaEntity.errors?.['pattern'])}">
+                <button type="button" class="btn btn-primary" (click)="showEmisorModal()">Buscar</button>
               </div>
               <div class="text-danger"
-                *ngIf="oForm.controls.cuentaEmisor.dirty &&  oForm.controls.cuentaEmisor.errors?.['required']">
+                *ngIf="oForm.controls.emisorCuentaEntity.dirty &&  oForm.controls.emisorCuentaEntity.errors?.['required']">
                 El campo es obligatorio.
               </div>
               <div class="text-danger"
-                *ngIf="oForm.controls.cuentaEmisor.dirty &&  oForm.controls.cuentaEmisor.errors?.['pattern']">
+                *ngIf="oForm.controls.emisorCuentaEntity.dirty &&  oForm.controls.emisorCuentaEntity.errors?.['pattern']">
                 El campo ha de ser un entrero de máximo 6 dígitos.
               </div>
             </div>
@@ -112,29 +112,29 @@
             <div class="col-sm-6 has-validation">
               <div class="input-group">
                 <span class="input-group-text">Descripcion de la ajena</span>
-                <input type="number" class="form-control" formControlName="cuentaReceptor" [ngClass]="{'is-valid' : 
-              oForm.controls.cuentaReceptor.dirty && !oForm.controls.cuentaReceptor.errors?.['required'] &&
-               !oForm.controls.cuentaReceptor.errors?.['pattern'],
-                'is-invalid' :  (oForm.controls.cuentaReceptor.dirty &&  oForm.controls.cuentaReceptor.errors?.['required'] )
-                || ( oForm.controls.cuentaReceptor.dirty &&  oForm.controls.cuentaReceptor.errors?.['pattern'])}">
-                <button type="button" class="btn btn-primary" (click)="setCuentaReceptor(id)">Buscar</button>
+                <input type="number" class="form-control" formControlName="receptorCuentaEntity" [ngClass]="{'is-valid' : 
+              oForm.controls.receptorCuentaEntity.dirty && !oForm.controls.receptorCuentaEntity.errors?.['required'] &&
+               !oForm.controls.receptorCuentaEntity.errors?.['pattern'],
+                'is-invalid' :  (oForm.controls.receptorCuentaEntity.dirty &&  oForm.controls.receptorCuentaEntity.errors?.['required'] )
+                || ( oForm.controls.receptorCuentaEntity.dirty &&  oForm.controls.receptorCuentaEntity.errors?.['pattern'])}">
+                <button type="button" class="btn btn-primary" (click)="showReceptorModal()">Buscar</button>
               </div>
               <div class="text-danger"
-                *ngIf="oForm.controls.cuentaReceptor.dirty &&  oForm.controls.cuentaReceptor.errors?.['required']">
+                *ngIf="oForm.controls.receptorCuentaEntity.dirty &&  oForm.controls.receptorCuentaEntity.errors?.['required']">
                 El campo es obligatorio.
               </div>
               <div class="text-danger"
-                *ngIf="oForm.controls.cuentaReceptor.dirty &&  oForm.controls.cuentaReceptor.errors?.['pattern']">
+                *ngIf="oForm.controls.receptorCuentaEntity.dirty &&  oForm.controls.receptorCuentaEntity.errors?.['pattern']">
                 El campo ha de ser un entrero de máximo 6 dígitos.
               </div>
             </div>
           </div>
 
-          <button type="submit" class="btn btn-primary" [disabled]="oForm.invalid">Guardar</button>
+          
 
 
 
-        </div>
+        </div><button type="submit" class="btn btn-primary" [disabled]="oForm.invalid">Guardar</button>
       </form>
     </div>
   </div>
@@ -162,8 +162,6 @@
     </div>
   </div>
 
-  cuenta: string = "cuentaModal";
-
   <div class="modal fade" [id]="tipooperacion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
@@ -173,7 +171,7 @@
         </div>
         <div class="modal-body">
 
-          <app-tipooperacion-plist-admin-unrouted
+          <app-tipooperacion-plist-admin-unrouted 
             (tipoOperacionSelected)="setTipoOperacion($event)"></app-tipooperacion-plist-admin-unrouted>
 
         </div>
@@ -185,8 +183,8 @@
   </div>
 
   <!-- Este modal será para seleccionar la ajena de tipo de Operacion. PENDIENTE DE HACER-->
-  <div class="modal fade" [id]="cuenta" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
+  <div class="modal fade" [id]="emisor" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
@@ -194,7 +192,7 @@
         </div>
         <div class="modal-body">
 
-          <app-cuenta-plist-admin-unrouted (cuentaSelectedReceptor)="setCuentaReceptor($event)"
+          <app-cuenta-plist-admin-unrouted (cuentaSelectedReceptor)="setCuentaReceptor($event)" [tipo]="tipoEmi"
             (cuentaSelectedEmisor)="setCuentaEmisor($event)"></app-cuenta-plist-admin-unrouted>
 
         </div>
@@ -204,3 +202,24 @@
       </div>
     </div>
   </div>
+
+    <!-- Este modal será para seleccionar la ajena de tipo de Operacion. PENDIENTE DE HACER-->
+    <div class="modal fade" [id]="receptor" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+  
+            <app-cuenta-plist-admin-unrouted (cuentaSelectedEmisor)="setCuentaEmisor($event)" [tipo]="tipoRec"
+              (cuentaSelectedReceptor)="setCuentaReceptor($event)"></app-cuenta-plist-admin-unrouted>
+  
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>

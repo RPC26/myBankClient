@@ -65,19 +65,14 @@
           <label for="inputiban" class="col-sm-2 col-form-label">IBAN</label>
           <div class="col-sm-4 has-validation">
             <input type="text" class="form-control" [ngClass]="{'is-valid' : oForm.controls.iban.dirty && !oForm.controls.iban.errors?.['required'] &&
-            oForm.controls.iban.dirty && !oForm.controls.iban.errors?.['minlength'] 
-              && oForm.controls.iban.dirty && !oForm.controls.iban.errors?.['maxlength'],
-              'is-invalid' :  oForm.controls.iban.dirty &&  oForm.controls.iban.errors?.['minlength'] 
-              ||  oForm.controls.iban.dirty &&  oForm.controls.iban.errors?.['maxlength'] ||  
+            oForm.controls.iban.dirty && !oForm.controls.iban.errors?.['pattern'] ,
+              'is-invalid' :  oForm.controls.iban.dirty &&  oForm.controls.iban.errors?.['required'] 
+              ||  oForm.controls.iban.dirty &&  oForm.controls.iban.errors?.['pattern'] ||  
               oForm.controls.iban.dirty &&  oForm.controls.iban.errors?.['required']}" id="inputiban"
               formControlName="iban">
             <div id="inputibanFeedback" class="invalid-feedback"
-              *ngIf="oForm.controls.iban.dirty &&  oForm.controls.iban.errors?.['minlength']">
-              La longitud mínima es de 5 caracteres.
-            </div>
-            <div id="inputibanFeedback" class="invalid-feedback"
-              *ngIf="oForm.controls.iban.dirty &&  oForm.controls.iban.errors?.['maxlength']">
-              La longitud máxima es de 10 caracteres.
+              *ngIf="oForm.controls.iban.dirty &&  oForm.controls.iban.errors?.['pattern']">
+              El iban debe tener un formato correcto.
             </div>
             <div id="inputibanFeedback" class="invalid-feedback"
               *ngIf="oForm.controls.iban.dirty &&  oForm.controls.iban.errors?.['required']">

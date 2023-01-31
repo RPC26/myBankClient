@@ -65,25 +65,21 @@
             </div>
           </div>
         </div>
-        
+
 
         <div class="mb-3 row">
           <label for="inputiban" class="col-sm-2 col-form-label">IBAN</label>
           <div class="col-sm-4 has-validation">
             <input type="text" class="form-control" [ngClass]="{'is-valid' : oForm.controls.iban.dirty && !oForm.controls.iban.errors?.['required'] &&
-            oForm.controls.iban.dirty && !oForm.controls.iban.errors?.['minlength'] 
+            oForm.controls.iban.dirty && !oForm.controls.iban.errors?.['pattern'] 
               && oForm.controls.iban.dirty && !oForm.controls.iban.errors?.['maxlength'],
-              'is-invalid' :  oForm.controls.iban.dirty &&  oForm.controls.iban.errors?.['minlength'] 
-              ||  oForm.controls.iban.dirty &&  oForm.controls.iban.errors?.['maxlength'] ||  
-              oForm.controls.iban.dirty &&  oForm.controls.iban.errors?.['required']}" id="inputiban"
+              'is-invalid' :  oForm.controls.iban.dirty &&  oForm.controls.iban.errors?.['required'] 
+             ||  
+              oForm.controls.iban.dirty &&  oForm.controls.iban.errors?.['pattern']}" id="inputiban"
               formControlName="iban">
             <div id="inputibanFeedback" class="invalid-feedback"
-              *ngIf="oForm.controls.iban.dirty &&  oForm.controls.iban.errors?.['minlength']">
-              La longitud mínima es de 5 caracteres.
-            </div>
-            <div id="inputibanFeedback" class="invalid-feedback"
-              *ngIf="oForm.controls.iban.dirty &&  oForm.controls.iban.errors?.['maxlength']">
-              La longitud máxima es de 10 caracteres.
+              *ngIf="oForm.controls.iban.dirty &&  oForm.controls.iban.errors?.['pattern']">
+              El iban debe tener un formato correcto.
             </div>
             <div id="inputibanFeedback" class="invalid-feedback"
               *ngIf="oForm.controls.iban.dirty &&  oForm.controls.iban.errors?.['required']">
@@ -92,12 +88,11 @@
           </div>
         </div>
 
-        
 
-        
 
-        <button type="submit" class="btn btn-primary"
-        [disabled]="oForm.invalid">Guardar</button>
+
+
+        <button type="submit" class="btn btn-primary" [disabled]="oForm.invalid">Guardar</button>
 
       </form>
 
@@ -126,7 +121,7 @@
 
 
 <div class="modal fade" [id]="usuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
+  <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
@@ -146,7 +141,7 @@
 
 <!-- Este modal será para seleccionar la ajena de tipo de cuenta. PENDIENTE DE HACER-->
 <div class="modal fade" [id]="tipocuenta" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
@@ -154,7 +149,8 @@
       </div>
       <div class="modal-body">
 
-        <app-tipocuenta-plist-admin-unrouted (tipocuentaSelected)="setTipocuenta($event)"></app-tipocuenta-plist-admin-unrouted>
+        <app-tipocuenta-plist-admin-unrouted
+          (tipocuentaSelected)="setTipocuenta($event)"></app-tipocuenta-plist-admin-unrouted>
 
       </div>
       <div class="modal-footer">

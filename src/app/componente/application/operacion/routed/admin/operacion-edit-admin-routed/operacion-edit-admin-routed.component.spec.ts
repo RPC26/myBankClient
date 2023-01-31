@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { CuentaEditAdminRoutedComponent } from './operacion-edit-admin-routed.component';
+import { OperacionEditAdminRoutedComponent } from './operacion-edit-admin-routed.component';
 
 describe('UsuarioEditAdminRoutedComponent', () => {
-  let component: CuentaEditAdminRoutedComponent;
-  let fixture: ComponentFixture<CuentaEditAdminRoutedComponent>;
+  let component: OperacionEditAdminRoutedComponent;
+  let fixture: ComponentFixture<OperacionEditAdminRoutedComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CuentaEditAdminRoutedComponent ]
+      declarations: [ OperacionEditAdminRoutedComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CuentaEditAdminRoutedComponent);
+    fixture = TestBed.createComponent(OperacionEditAdminRoutedComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

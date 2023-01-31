@@ -56,7 +56,7 @@ removeOne(id: number): Observable<number> {
 }
 
 newOne(oUsuarioCreate: IOperacionCreate): Observable<number> {       
-  return this.oHttp.post<number>(this.url, oUsuarioCreate, HTTP_OPTIONS);
+  return this.oHttp.post<number>(this.url, oUsuarioCreate);
 }
 
 updateOne(oUsuario2Send: IOperacionUpdate): Observable<number> {

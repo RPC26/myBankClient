@@ -34,6 +34,7 @@ import { OperacionRemoveAdminRoutedComponent } from './componente/application/op
 import { OperacionPlistAdminRoutedComponent } from './componente/application/operacion/routed/admin/operacion-plist-admin-routed/operacion-plist-admin-routed.component';
 import { OperacionNewAdminRoutedComponent } from './componente/application/operacion/routed/admin/operacion-new-admin-routed/operacion-new-admin-routed.component';
 import { TipoOperacionPlistAdminUnRoutedComponent } from './componente/application/tipooperacion/unrouted/tipooperacion-plist-admin-unrouted/tipooperacion-plist-admin-unrouted.component';
+import { OperacionEditAdminRoutedComponent } from './componente/application/operacion/routed/admin/operacion-edit-admin-routed/operacion-edit-admin-routed.component';
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import { TipoOperacionPlistAdminUnRoutedComponent } from './componente/applicati
     OperacionRemoveAdminRoutedComponent,
     OperacionPlistAdminRoutedComponent,
     OperacionNewAdminRoutedComponent,
-    TipoOperacionPlistAdminUnRoutedComponent
+    TipoOperacionPlistAdminUnRoutedComponent,
+    OperacionEditAdminRoutedComponent
   ],
 
   imports: [
