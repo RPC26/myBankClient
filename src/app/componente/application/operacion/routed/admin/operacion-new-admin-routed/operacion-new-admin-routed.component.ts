@@ -39,8 +39,8 @@ export class OperacionNewAdminRoutedComponent implements OnInit {
     this.oForm = <FormGroup>this.oFormBuilder.group({
       id: [''],
       fechahoraoperacion: ['', Validators.required],
-      cantidad: ['', Validators.required],
-      tipooperacion: ['', Validators.required],
+      cantidad: ['', [Validators.required, Validators.min(1)]],
+      tipooperacion: ['', [Validators.pattern("^[{1,2,3}]$"), Validators.required]],
       emisorCuentaEntity: ['', Validators.required],
       receptorCuentaEntity: ['', ]
     });
@@ -50,8 +50,8 @@ export class OperacionNewAdminRoutedComponent implements OnInit {
     this.oForm = <FormGroup>this.oFormBuilder.group({
       id: [''],
       fechahoraoperacion: ['', Validators.required],
-      cantidad: ['', Validators.required],
-      tipooperacion: ['', Validators.required],
+      cantidad: ['', [Validators.required, Validators.min(1)]],
+      tipooperacion: ['', [Validators.pattern("^[{1,2,3}]$"), Validators.required]],
       emisorCuentaEntity: ['', Validators.required],
       receptorCuentaEntity: ['', ]
     });

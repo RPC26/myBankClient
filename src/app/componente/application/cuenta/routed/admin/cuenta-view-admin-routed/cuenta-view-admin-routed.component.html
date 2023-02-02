@@ -1,8 +1,8 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col">
-            <h1 class="text-center mb-5">Vista de una cuenta</h1>
-            <table class="table table-bordered table-striped">
+            <h1 class="text-center mb-5">Datos de una cuenta</h1>
+            <table class="table table-bordered table-striped mb-5">
                 <tbody>
                     <tr>
                         <th>Id</th>
@@ -27,6 +27,23 @@
                     </tr>
                 </tbody>
             </table>
+            <div>
+                <h1 class="text-center mb-4">Saldo</h1>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <th>ID Cuenta</th>
+                        <th>Saldo real</th>
+                        <th>Saldo beneficio</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{oSaldoCuenta.idCuenta}}</td>
+                            <td>{{oSaldoCuenta.saldoReal}}</td>
+                            <td>{{oSaldoCuenta.saldoBeneficio}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

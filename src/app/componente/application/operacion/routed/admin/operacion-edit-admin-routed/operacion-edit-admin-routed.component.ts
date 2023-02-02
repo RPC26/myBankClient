@@ -41,8 +41,8 @@ export class OperacionEditAdminRoutedComponent implements OnInit {
     this.oForm = <FormGroup>this.oFormBuilder.group({
       id: [''],
       fechahoraoperacion: ['', Validators.required],
-      cantidad: ['', Validators.required],
-      tipooperacion: ['', Validators.required],
+      cantidad: ['', [Validators.required, Validators.min(1)]],
+      tipooperacion: ['', [Validators.pattern("^[{1,2,3}]$"), Validators.required]],
       emisorCuentaEntity: ['', Validators.required],
       receptorCuentaEntity: ['']
     });
@@ -61,9 +61,9 @@ export class OperacionEditAdminRoutedComponent implements OnInit {
         console.log(data);
         this.oForm = <FormGroup>this.oFormBuilder.group({
           id: [data.id],
-          cantidad: [data.cantidad, Validators.required],
+          cantidad: [data.cantidad, [Validators.required, Validators.min(1)]],
           fechahoraoperacion: [data.fechahoraoperacion, Validators.required],
-          tipooperacion: [data.tipooperacion.id, [Validators.required]],
+          tipooperacion: [data.tipooperacion.id, [Validators.pattern("^[{1,2,3}]$"), Validators.required]],
           emisorCuentaEntity: [data.emisorCuentaEntity.id, Validators.required],
           receptorCuentaEntity: [null]
         });
@@ -71,9 +71,9 @@ export class OperacionEditAdminRoutedComponent implements OnInit {
         if (data.receptorCuentaEntity) {
           this.oForm = <FormGroup>this.oFormBuilder.group({
             id: [data.id],
-            cantidad: [data.cantidad, Validators.required],
+            cantidad: [data.cantidad, [Validators.required, Validators.min(1)]],
             fechahoraoperacion: [data.fechahoraoperacion, Validators.required],
-            tipooperacion: [data.tipooperacion.id, [Validators.required]],
+            tipooperacion: [data.tipooperacion.id, [Validators.pattern("^[{1,2,3}]$"), Validators.required]],
             emisorCuentaEntity: [data.emisorCuentaEntity.id, Validators.required],
             receptorCuentaEntity: [data.receptorCuentaEntity.id]
           });
@@ -89,14 +89,14 @@ export class OperacionEditAdminRoutedComponent implements OnInit {
       id: this.oForm.value.id,
       fechahoraoperacion: this.oForm.value.fechahoraoperacion,
       cantidad: this.oForm.value.cantidad,
-      tipooperacion: { id: this.oForm.value.id},
-      emisorCuentaEntity: { id: this.oForm.value.id},
+      tipooperacion: { id: this.oForm.value.tipooperacion},
+      emisorCuentaEntity: { id: this.oForm.value.emisorCuentaEntity},
     }
 
     if (this.oForm.value.receptorCuentaEntity) {
       this.oOperacionUpdate = {
         ...this.oOperacionUpdate,
-        receptorCuentaEntity: { id: this.oForm.value.id}
+        receptorCuentaEntity: { id: this.oForm.value.receptorCuentaEntity}
       }
     }
     if (this.oForm.valid) {
@@ -147,7 +147,7 @@ export class OperacionEditAdminRoutedComponent implements OnInit {
     this.myModal.show();   
   }
 
-  showTipocuentaModal = () => {
+  showTipooperacionModal = () => {
     this.myModal = new bootstrap.Modal(document.getElementById(this.tipooperacion), {keyboard: false})
     //var myModalEl = document.getElementById(this.ajena);
     this.myModal.show();   

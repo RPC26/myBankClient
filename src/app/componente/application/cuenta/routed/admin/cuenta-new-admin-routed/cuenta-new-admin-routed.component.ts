@@ -38,7 +38,7 @@ export class CuentaNewAdminRoutedComponent implements OnInit {
     this.id = oActivatedRoute.snapshot.params['id'];
     this.oForm = <FormGroup>this.oFormBuilder.group({
       id: [''],
-      id_tipocuenta: ['', [Validators.required]],
+      id_tipocuenta: ['', [Validators.required, Validators.pattern("^[{1,2}]$")]],
       id_usuario: ['', Validators.required],
       iban: ['', Validators.pattern("^[E][S][1][2][\\s]\\d{4}[\\s]\\d{4}[\\s]\\d{2}[\\s]\\d{8}$")],
 

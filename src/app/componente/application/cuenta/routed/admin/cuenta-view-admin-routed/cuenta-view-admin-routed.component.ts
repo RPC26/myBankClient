@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ICuenta } from 'src/app/model/cuenta-interface';
+import { ISaldoCuenta } from 'src/app/model/saldo-interface';
 import { IUsuario } from 'src/app/model/usuario-interface';
 import { CuentaService } from 'src/app/servicio/cuenta.service';
 
@@ -13,6 +14,7 @@ export class CuentaViewAdminRoutedComponent implements OnInit {
 
     id: number = 0;
     oICuenta: ICuenta = null;
+    oSaldoCuenta: ISaldoCuenta = null
 
     constructor(
       private oActivatedRoute: ActivatedRoute,
@@ -23,6 +25,7 @@ export class CuentaViewAdminRoutedComponent implements OnInit {
 
     ngOnInit(): void {
       this.getOne();
+      this.getSaldo();
     }
 
     getOne() {
@@ -30,6 +33,14 @@ export class CuentaViewAdminRoutedComponent implements OnInit {
         next: (data: ICuenta) => {
           this.oICuenta = data;
           console.log(data);
+        }
+      })
+    }
+
+    getSaldo() {
+      this.oCuentaService.getSaldo(this.id).subscribe({
+        next: (data: ISaldoCuenta) => {
+          this.oSaldoCuenta = data
         }
       })
     }

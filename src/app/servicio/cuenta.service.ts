@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BASE_URL, HTTP_OPTIONS } from 'src/environments/environment';
 import { ICuenta, ICuentaCreate, ICuentaPage, ICuentaUpdate } from '../model/cuenta-interface';
+import { ISaldoCuenta } from '../model/saldo-interface';
 
 @Injectable({
   providedIn: 'root'
@@ -61,6 +62,10 @@ updateOne(oUsuario2Send: ICuentaUpdate): Observable<number> {
 
 generate(amount: number): Observable<number> {
   return this.oHttp.post<number>(`${this.url}/generate/${amount}`, null, HTTP_OPTIONS)
+}
+
+getSaldo(id: number): Observable<ISaldoCuenta> {
+  return this.oHttp.get<ISaldoCuenta>(`${this.url}/${id}/saldo`, HTTP_OPTIONS)
 }
 
 }

@@ -55,15 +55,15 @@
             </div>
             <div class="text-danger"
               *ngIf="oForm.controls.id_tipocuenta.dirty &&  oForm.controls.id_tipocuenta.errors?.['pattern']">
-              El campo ha de ser un entrero de máximo 6 dígitos.
+              Tipo cuenta inválido.
             </div>
           </div>
         </div>
         
 
         <div class="mb-3 row">
-          <label for="inputiban" class="col-sm-2 col-form-label">IBAN</label>
-          <div class="col-sm-4 has-validation">
+          <label for="inputiban" class="col-xl-2 col-form-label">IBAN</label>
+          <div class="col-sm-6 has-validation">
             <input type="text" class="form-control" [ngClass]="{'is-valid' : oForm.controls.iban.dirty && !oForm.controls.iban.errors?.['required'] &&
             oForm.controls.iban.dirty && !oForm.controls.iban.errors?.['pattern'] ,
               'is-invalid' :  oForm.controls.iban.dirty &&  oForm.controls.iban.errors?.['required'] 
@@ -72,7 +72,7 @@
               formControlName="iban">
             <div id="inputibanFeedback" class="invalid-feedback"
               *ngIf="oForm.controls.iban.dirty &&  oForm.controls.iban.errors?.['pattern']">
-              El iban debe tener un formato correcto.
+              El IBAN debe tener un formato correcto. (Ej: ES12 XXXX XXXX XX XXXXXXXX)
             </div>
             <div id="inputibanFeedback" class="invalid-feedback"
               *ngIf="oForm.controls.iban.dirty &&  oForm.controls.iban.errors?.['required']">

@@ -15,20 +15,14 @@
         <div class="mb-3 row">
           <label for="inputcantidad" class="col-sm-2 col-form-label">Cantidad</label>
           <div class="col-sm-4 has-validation">
-            <input type="text" class="form-control" [ngClass]="{'is-valid' : oForm.controls.cantidad.dirty && !oForm.controls.cantidad.errors?.['required'] &&
-            oForm.controls.cantidad.dirty && !oForm.controls.cantidad.errors?.['minlength'] 
-              && oForm.controls.cantidad.dirty && !oForm.controls.cantidad.errors?.['maxlength'],
-              'is-invalid' :  oForm.controls.cantidad.dirty &&  oForm.controls.cantidad.errors?.['minlength'] 
-              ||  oForm.controls.cantidad.dirty &&  oForm.controls.cantidad.errors?.['maxlength'] ||  
+            <input type="number" class="form-control" [ngClass]="{'is-valid' : oForm.controls.cantidad.dirty && !oForm.controls.cantidad.errors?.['required'] &&
+            oForm.controls.cantidad.dirty && !oForm.controls.cantidad.errors?.['min'] ,
+              'is-invalid' :  oForm.controls.cantidad.dirty &&  oForm.controls.cantidad.errors?.['min']  ||  
               oForm.controls.cantidad.dirty &&  oForm.controls.cantidad.errors?.['required']}" id="inputcantidad"
               formControlName="cantidad">
             <div id="inputcantidadFeedback" class="invalid-feedback"
-              *ngIf="oForm.controls.cantidad.dirty &&  oForm.controls.cantidad.errors?.['minlength']">
-              La longitud mínima es de 5 caracteres.
-            </div>
-            <div id="inputcantidadFeedback" class="invalid-feedback"
-              *ngIf="oForm.controls.cantidad.dirty &&  oForm.controls.cantidad.errors?.['maxlength']">
-              La longitud máxima es de 10 caracteres.
+              *ngIf="oForm.controls.cantidad.dirty &&  oForm.controls.cantidad.errors?.['min']">
+              La cantidad debe ser mayor a 1.
             </div>
             <div id="inputcantidadFeedback" class="invalid-feedback"
               *ngIf="oForm.controls.cantidad.dirty &&  oForm.controls.cantidad.errors?.['required']">
@@ -62,16 +56,16 @@
           </div>
 
           <div class="mb-3 row">
-            <label for="inputUsertype" class="col-sm-2 col-form-label">Tipo de Operación</label>
+            <label for="inputUsertype" class="col-sm-2 col-form-label">Tipo de Operacion</label>
             <div class="col-sm-6 has-validation">
               <div class="input-group">
                 <span class="input-group-text">Descripcion de la ajena</span>
-                <input type="number" class="form-control" formControlName="tipooperacion" [ngClass]="{'is-valid' : 
-              oForm.controls.tipooperacion.dirty && !oForm.controls.tipooperacion.errors?.['required'] &&
-               !oForm.controls.tipooperacion.errors?.['pattern'],
-                'is-invalid' :  (oForm.controls.tipooperacion.dirty &&  oForm.controls.tipooperacion.errors?.['required'] )
-                || ( oForm.controls.tipooperacion.dirty &&  oForm.controls.tipooperacion.errors?.['pattern'])}">
-                <button type="button" class="btn btn-primary" (click)="showTipocuentaModal()">Buscar</button>
+                <input type="number" class="form-control" formControlName="tipooperacion" [ngClass]="{'is-valid' : oForm.controls.tipooperacion.dirty && !oForm.controls.tipooperacion.errors?.['required'] &&
+                oForm.controls.tipooperacion.dirty && !oForm.controls.tipooperacion.errors?.['pattern'] ,
+                  'is-invalid' :  oForm.controls.tipooperacion.dirty &&  oForm.controls.tipooperacion.errors?.['required'] 
+                  ||  oForm.controls.tipooperacion.dirty &&  oForm.controls.tipooperacion.errors?.['pattern'] ||  
+                  oForm.controls.tipooperacion.dirty &&  oForm.controls.tipooperacion.errors?.['required']}" id="inputtipooperacion">
+                <button type="button" class="btn btn-primary" (click)="showTipooperacionModal()">Buscar</button>
               </div>
               <div class="text-danger"
                 *ngIf="oForm.controls.tipooperacion.dirty &&  oForm.controls.tipooperacion.errors?.['required']">
@@ -79,7 +73,7 @@
               </div>
               <div class="text-danger"
                 *ngIf="oForm.controls.tipooperacion.dirty &&  oForm.controls.tipooperacion.errors?.['pattern']">
-                El campo ha de ser un entrero de máximo 6 dígitos.
+                Tipo operación invalido.
               </div>
             </div>
           </div>
@@ -107,12 +101,12 @@
             </div>
           </div>
 
-          <div class="mb-3 row">
+          <div *ngIf="oForm.controls.tipooperacion.value == 3" class="mb-3 row">
             <label for="inputUsertype" class="col-sm-2 col-form-label">Cuenta Receptor</label>
             <div class="col-sm-6 has-validation">
               <div class="input-group">
                 <span class="input-group-text">Descripcion de la ajena</span>
-                <input type="number" class="form-control" formControlName="receptorCuentaEntity" [ngClass]="{'is-valid' : 
+                <input  type="number" class="form-control" formControlName="receptorCuentaEntity" [ngClass]="{'is-valid' : 
               oForm.controls.receptorCuentaEntity.dirty && !oForm.controls.receptorCuentaEntity.errors?.['required'] &&
                !oForm.controls.receptorCuentaEntity.errors?.['pattern'],
                 'is-invalid' :  (oForm.controls.receptorCuentaEntity.dirty &&  oForm.controls.receptorCuentaEntity.errors?.['required'] )

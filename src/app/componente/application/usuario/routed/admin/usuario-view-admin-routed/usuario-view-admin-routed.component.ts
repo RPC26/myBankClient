@@ -11,16 +11,19 @@ import { UsuarioService } from 'src/app/servicio/usuario.service';
 })
 export class UsuarioViewAdminRoutedComponent implements OnInit {
 
-    id: number = 0;
-    oIUsuario: IUsuario = null;
+    id: number;
+    oIUsuario: IUsuario;
 
-    oISaldoUsuario: ISaldoCuenta[] = null;
+    oISaldoUsuario: ISaldoCuenta[];
 
     constructor(
       private oActivatedRoute: ActivatedRoute,
       private oUsuarioService: UsuarioService,
     ) {
       this.id = oActivatedRoute.snapshot.params['id'];
+      this.oIUsuario = undefined
+      this.oISaldoUsuario = []
+
     }
 
     ngOnInit(): void {
@@ -32,7 +35,7 @@ export class UsuarioViewAdminRoutedComponent implements OnInit {
       this.oUsuarioService.getSaldo(this.id).subscribe({
         next: (data: ISaldoUsuario) => {
           this.oISaldoUsuario = data.cuentasUsuario;
-          console.log("datasos",data)
+          console.log("saldo", this.oISaldoUsuario)
         }
       })
     }
