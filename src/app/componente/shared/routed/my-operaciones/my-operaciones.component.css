@@ -1,0 +1,11 @@
+
+.container{
+    margin-top: 8%;
+}
+
+#cajero{
+    border: solid 8px;
+    border-radius: 15px;
+    color: black;
+    background-color: bisque;
+}

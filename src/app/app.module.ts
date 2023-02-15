@@ -39,6 +39,7 @@ import { ChartUnroutedComponent } from './componente/shared/unrouted/chart-unrou
 import { MyDatosComponent } from './componente/shared/routed/my-datos/my-datos.component';
 import { MyOperacionesComponent } from './componente/shared/routed/my-operaciones/my-operaciones.component';
 import { OperacionPlistUnroutedComponent } from './componente/application/operacion/unrouted/operacion-plist-unrouted/operacion-plist-unrouted.component';
+import { FooterComponent } from './componente/shared/unrouted/footer/footer.component';
 
 
 @NgModule({
@@ -75,6 +76,7 @@ import { OperacionPlistUnroutedComponent } from './componente/application/operac
     MyDatosComponent,
     MyOperacionesComponent,
     OperacionPlistUnroutedComponent,
+    FooterComponent,
   ],
 
   imports: [

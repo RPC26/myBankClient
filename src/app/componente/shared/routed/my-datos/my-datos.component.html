@@ -1,7 +1,7 @@
-<div class="container">
+<div class="container" style="background-color: rgba(245, 238, 238, 0.562);">
     <div class="row">
         <h3 class="mt-4">Mis cuentas</h3>
-        <div class="col p-4 d-flex align-items-center gap-5 mb-2">
+        <div class="col p-4 d-flex align-items-center gap-5 mb-2 animate__animated animate__flipInX animate__delay-1s">
             <div (click)="modalCuenta(cuenta.id)" style="width: 21.5rem; cursor: pointer;" class="card"
                 *ngFor="let cuenta of cuentasUsuario.content">
                 <div class="card-body">
