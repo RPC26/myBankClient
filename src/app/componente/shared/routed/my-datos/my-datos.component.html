@@ -1,0 +1,79 @@
+<div class="container">
+    <div class="row">
+        <h3 class="mt-4">Mis cuentas</h3>
+        <div class="col p-4 d-flex align-items-center gap-5 mb-2">
+            <div (click)="modalCuenta(cuenta.id)" style="width: 21.5rem; cursor: pointer;" class="card"
+                *ngFor="let cuenta of cuentasUsuario.content">
+                <div class="card-body">
+                    <h4 class="card-title">{{cuenta.iban}}</h4>
+                    <div class="d-flex justify-content-between mt-4">
+                        <p class="card-text">{{cuenta.tipocuenta.nombre}}</p>
+                        <p class="fw-bold" [ngClass]="!cuenta.activa ? 'text-danger' : 'text-success'">{{cuenta.activa
+                            && 'Activada' || 'Desactivada' }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex flex-column w-100 my-4" *ngFor="let cuenta of cuentasUsuario.content">
+            <div class="d-flex flex-column  w-100">
+                <h3>Estadísticas {{cuenta.iban}}</h3>
+                <div class="d-flex align-items-center ">
+                    <app-chart-unrouted style="width: 100%; height: fit-content;" [type]="'line'" [data]="dataOperaciones"
+                    [options]="optionsCuentas"></app-chart-unrouted>
+                    <app-chart-unrouted style="width:50%; height: fit-content;" [type]="'pie'" [data]="dataCuentas"
+                    [options]="optionsCuentas"></app-chart-unrouted>
+                
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="cuentaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Datos de la cuenta</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body ">
+                <div class="p-3">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <th>IBAN</th>
+                            <th>Saldo real</th>
+                            <th>Saldo beneficio</th>
+                            <th>Fecha creación</th>
+                            <th>Tipo cuenta</th>
+                            <th>Estado</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{ibanCuenta}}</td>
+                                <td>{{saldoRealCuenta | number:'1.2-2'}}€</td>
+                                <td>{{saldoBeneficioCuenta | number:'1.2-2'}}€</td>
+                                <td>{{fechaCreacionCuenta | date: 'dd/MM/yyyy'}}</td>
+                                <td>{{tipoCuenta}}</td>
+                                <td>{{estadoCuenta && 'Activada' || 'Desactivada'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <div class="p-3">
+                    <h4>Últimas operaciones</h4>
+
+                    <app-operacion-plist-unrouted [sortField]="'fechahoraoperacion'" [sortDirection]="'desc'"
+                        [idCuentaFilter]="cuentaIdSelected"></app-operacion-plist-unrouted>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

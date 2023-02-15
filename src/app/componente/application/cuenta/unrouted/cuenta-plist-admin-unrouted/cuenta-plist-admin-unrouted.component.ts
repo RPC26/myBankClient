@@ -4,6 +4,7 @@ import { faEye, faUserPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 import { ICuenta, ICuentaPage } from 'src/app/model/cuenta-interface';
 import { CuentaService } from 'src/app/servicio/cuenta.service';
+import { SessionService } from 'src/app/servicio/session.service';
 declare let bootstrap: any;
 
 @Component({
@@ -24,7 +25,8 @@ export class CuentaPlistAdminUnroutedComponent implements OnInit {
     private sortDirection: string = "";
 
     protected tipocuentaFilter: number = 0;
-    protected idUsuarioFilter: number = 0;
+    @Input() idUsuarioFilter: number = 0;
+    idUsuarioSesion: number
 
     faEye = faEye;
     faUserPen = faUserPen;
@@ -37,12 +39,13 @@ export class CuentaPlistAdminUnroutedComponent implements OnInit {
     
 
     
-    constructor(private oCuentaService: CuentaService
+    constructor(private oCuentaService: CuentaService, private oSessionService: SessionService
     ) {
-
+        this.idUsuarioSesion = parseInt(oSessionService.getUserId())
     }
 
     @Output() cuentaSelectedEmisor = new EventEmitter<number>();
+    @Output() ibanSelected = new EventEmitter<string>();
     @Output() cuentaSelectedReceptor = new EventEmitter<number>();
     @Input() tipo: number 
 
@@ -51,12 +54,14 @@ export class CuentaPlistAdminUnroutedComponent implements OnInit {
         this.getPage();
     }
 
-    setSelectedCuentaEmisor = (id: number) => {
+    setSelectedCuentaEmisor = (id: number, iban: string) => {
         this.cuentaSelectedEmisor.emit(id)
+        this.ibanSelected.emit(iban);
     }
 
-    setSelectedCuentaReceptor = (id: number) => {
+    setSelectedCuentaReceptor = (id: number, iban: string) => {
         this.cuentaSelectedReceptor.emit(id)
+        this.ibanSelected.emit(iban);
     }
 
 

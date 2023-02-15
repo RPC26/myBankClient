@@ -38,12 +38,13 @@
                         <th (click)="setOrder('usuario.id')">USUARIO</th>
                         <th (click)="setOrder('tipocuenta.id')">TIPOCUENTA</th>
                         <th (click)="setOrder('iban')">IBAN</th>
+                        <th (click)="setOrder('activa')">ACTIVA</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let cuenta of this.getPageContent()">
                         <td>{{cuenta.id}}</td>
-                        <td>{{cuenta.fechacreacion}}</td>
+                        <td>{{cuenta.fechacreacion | date: 'dd/MM/yyyy'}}</td>
                         <td (click)="setFilterByUsuario(cuenta.usuario.id)">
                             {{cuenta.usuario.id}}-{{cuenta.usuario.nombre}}</td>
                         
@@ -51,6 +52,7 @@
                             {{cuenta.tipocuenta.id}}-{{cuenta.tipocuenta.nombre}}</td>
                         
                         <td>{{cuenta.iban}}</td>
+                        <td>{{cuenta.activa}}</td>
                             <td><div class="btn-group" role="group" aria-label="Herramientas">
                                 <button class="btn btn-sm btn-primary"
                                     [routerLink]="['/admin/cuenta/view',cuenta.id]">

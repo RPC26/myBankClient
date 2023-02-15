@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BASE_URL, HTTP_OPTIONS } from 'src/environments/environment';
-import { ICuenta, ICuentaCreate, ICuentaPage, ICuentaUpdate } from '../model/cuenta-interface';
+import { ICuenta, ICuentaCreate, ICuentaPage, ICuentaUpdate, IEstadoCuentas } from '../model/cuenta-interface';
 import { ISaldoCuenta } from '../model/saldo-interface';
 
 @Injectable({
@@ -66,6 +66,10 @@ generate(amount: number): Observable<number> {
 
 getSaldo(id: number): Observable<ISaldoCuenta> {
   return this.oHttp.get<ISaldoCuenta>(`${this.url}/${id}/saldo`, HTTP_OPTIONS)
+}
+
+getEstadoCuentas(): Observable<IEstadoCuentas> {
+  return this.oHttp.get<IEstadoCuentas>(`${this.url}/count/estado`, HTTP_OPTIONS);
 }
 
 }

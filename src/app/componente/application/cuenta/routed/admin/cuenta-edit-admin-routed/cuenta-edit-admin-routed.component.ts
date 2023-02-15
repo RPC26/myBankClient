@@ -34,10 +34,10 @@ export class CuentaEditAdminRoutedComponent implements OnInit {
     this.id = oActivatedRoute.snapshot.params['id'];
     this.oForm = <FormGroup>this.oFormBuilder.group({
       id: [''],
-      fechacreacion: [''],
       id_tipocuenta: ['', [Validators.required]],
       id_usuario: ['', Validators.required],
       iban: ['', Validators.pattern("^[E][S][1][2][\\s]\\d{4}[\\s]\\d{4}[\\s]\\d{2}[\\s]\\d{8}$")],
+      activa: [false, Validators.required]
     });
   }
 
@@ -63,11 +63,10 @@ export class CuentaEditAdminRoutedComponent implements OnInit {
         console.log(data);
         this.oForm = <FormGroup>this.oFormBuilder.group({
           id: [data.id],
-          fechacreacion: [data.fechacreacion],
           id_tipocuenta: [data.tipocuenta.id, [Validators.required]],
           id_usuario: [data.usuario.id, Validators.required],
           iban: [data.iban, Validators.pattern("^[E][S][1][2][\\s]\\d{4}[\\s]\\d{4}[\\s]\\d{2}[\\s]\\d{8}$")],
-
+          activa: [data.activa, Validators.required]
         });
       }
     })
@@ -78,9 +77,9 @@ export class CuentaEditAdminRoutedComponent implements OnInit {
     this.oCuentaUpdate = {
       id: this.oForm.value.id,
       iban:  this.oForm.value.iban,
-      fechacreacion: this.oForm.value.fechacreacion,
       tipocuenta: { id: this.oForm.value.id_tipocuenta},
       usuario: { id: this.oForm.value.id_usuario},
+      activa: this.oForm.value.activa
     }
     if (this.oForm.valid) {
       this.oCuentaService.updateOne(this.oCuentaUpdate).subscribe({

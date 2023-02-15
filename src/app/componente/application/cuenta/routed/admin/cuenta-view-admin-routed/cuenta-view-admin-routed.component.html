@@ -10,7 +10,7 @@
                     </tr>
                     <tr>
                         <td>FECHA CREACIÓN</td>
-                        <td>{{oICuenta?.fechacreacion}}</td>
+                        <td>{{oICuenta?.fechacreacion | date: 'dd/MM/yyyy'}}</td>
                     </tr>
                     <tr>
                         <td>ID USUARIO</td>
@@ -24,6 +24,10 @@
                     <tr>
                         <td>IBAN</td>
                         <td>{{oICuenta?.iban}}</td>
+                    </tr>
+                    <tr>
+                        <td>ACTIVA</td>
+                        <td>{{oICuenta?.activa}}</td>
                     </tr>
                 </tbody>
             </table>

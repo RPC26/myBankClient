@@ -45,7 +45,7 @@ export interface IOperacionUpdate {
 
 export interface IOperacionCreate {
     id: number;
-    fechahoraoperacion: Date;
+    fechahoraoperacion?: Date;
     cantidad: number,
     tipooperacion: IEntity;
     emisorCuentaEntity:IEntity;

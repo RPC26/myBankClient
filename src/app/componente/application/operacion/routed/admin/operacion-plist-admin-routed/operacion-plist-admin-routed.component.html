@@ -51,7 +51,7 @@
                 <tbody>
                     <tr *ngFor="let operacion of this.getPageContent()">
                         <td>{{operacion.id}}</td>
-                        <td>{{operacion.fechahoraoperacion}}</td>
+                        <td>{{operacion.fechahoraoperacion | date: 'dd/MM/yyyy'}}</td>
                         <td>{{operacion.cantidad}}</td>
                         <td (click)="setFilterByTipoOperacion(operacion.tipooperacion.id)">
                             {{operacion.tipooperacion.id}}-{{operacion.tipooperacion.nombre}}</td>

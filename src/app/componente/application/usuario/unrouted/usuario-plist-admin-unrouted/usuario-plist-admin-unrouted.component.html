@@ -10,8 +10,13 @@
                 </app-dropdown-register-page>
                 
             </div>
-
-
+            <div class="col-md d-flex align-items-center justify-content-between text-center">
+                <app-pagination-unrouted [nPage]="getPageNumber() + 1" [nTotalPages]="this.getpagesCount()"
+                    (eePage)="setPage($event)"></app-pagination-unrouted>
+                    
+                    <h5 class="text-muted">TOTAL REGISTROS {{userPage.totalElements}}</h5>
+     
+            </div>
             <div class="col-md text-start">
                 <h5 class="text-muted" *ngIf="filter!=''">Filtrando por {{filter}} (borrar para resetear)</h5>
                 <button class="btn btn-outline-danger" *ngIf="tipousuarioFilter!=0" (click)="setFilterByTipousuario(0)">

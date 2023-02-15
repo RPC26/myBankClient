@@ -41,7 +41,7 @@ export class CuentaNewAdminRoutedComponent implements OnInit {
       id_tipocuenta: ['', [Validators.required, Validators.pattern("^[{1,2}]$")]],
       id_usuario: ['', Validators.required],
       iban: ['', Validators.pattern("^[E][S][1][2][\\s]\\d{4}[\\s]\\d{4}[\\s]\\d{2}[\\s]\\d{8}$")],
-
+      activa: [false, Validators.required]
     });
   }
 
@@ -56,6 +56,7 @@ export class CuentaNewAdminRoutedComponent implements OnInit {
       fechacreacion: this.oForm.value.fechacreacion,
       tipocuenta: { id: this.oForm.value.id_tipocuenta},
       usuario: { id: this.oForm.value.id_usuario},
+      activa: this.oForm.value.activa
     }
     if (this.oForm.valid) {
       this.oCuentaService.newOne(this.oCuentaCreate).subscribe({

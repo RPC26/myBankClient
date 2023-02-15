@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     private oFormBuilder: FormBuilder,
   ) {
     this.oFormulario = <FormGroup>this.oFormBuilder.group({
-      username: ['', [Validators.required, Validators.minLength(3)]],
+      login: ['', [Validators.required, Validators.minLength(3)]],
       password: ['', [Validators.required, Validators.minLength(3)]]
     });
   }
@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    const user = this.oFormulario.get('username')!.value
+    const user = this.oFormulario.get('login')!.value
     const password = this.oFormulario.get('password')!.value
 
     this.oSessionService.login(user, password).subscribe(
@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
         next: (data: string) => {
           localStorage.setItem("token", data);
           this.oSessionService.emit(new EmitEvent(Events.login, data));
-          this.oRouter.navigate(['/home'])
+          this.oRouter.navigate(['/dashboard'])
         },
         error: (error: HttpErrorResponse) => {
           console.log(error.status, error.statusText);
@@ -55,7 +55,44 @@ export class LoginComponent implements OnInit {
     console.log("loginAsAdmin");
     this.oFormulario.controls.login.setValue("prueba");
     this.oFormulario.controls.password.setValue("prueba");
+
+    const user = this.oFormulario.get('login')!.value
+    const password = this.oFormulario.get('password')!.value
+
+    this.oSessionService.login(user, password).subscribe(
+      {
+        next: (data: string) => {
+          localStorage.setItem("token", data);
+          this.oSessionService.emit(new EmitEvent(Events.login, data));
+          this.oRouter.navigate(['/dashboard'])
+        },
+        error: (error: HttpErrorResponse) => {
+          console.log(error.status, error.statusText);
+        }
+      }
+    )
   }
 
+  loginAsUser() {
+    console.log("loginAsAdmin");
+    this.oFormulario.controls.login.setValue("jose_salom");
+    this.oFormulario.controls.password.setValue("prueba");
+
+    const user = this.oFormulario.get('login')!.value
+    const password = this.oFormulario.get('password')!.value
+
+    this.oSessionService.login(user, password).subscribe(
+      {
+        next: (data: string) => {
+          localStorage.setItem("token", data);
+          this.oSessionService.emit(new EmitEvent(Events.login, data));
+          this.oRouter.navigate(['/usuario/my-datos'])
+        },
+        error: (error: HttpErrorResponse) => {
+          console.log(error.status, error.statusText);
+        }
+      }
+    )
+  }
 
 }

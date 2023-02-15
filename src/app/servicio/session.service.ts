@@ -26,14 +26,32 @@ export class SessionService {
     return localStorage.getItem("token");
   }
 
+  getUserId(): string {
+    if (!this.isSessionActive()) {
+      return "";
+    } else {
+      let token: string = localStorage.getItem("token");
+      return this.oDecodeService.decode(token).id;
+    }
+  }
+
   getUserName(): string {
     if (!this.isSessionActive()) {
-        return "";
+      return "";
     } else {
-        let token: string = localStorage.getItem("token");
-        return this.oDecodeService.decode(token).name;
+      let token: string = localStorage.getItem("token");
+      return this.oDecodeService.decode(token).name;
     }
-}
+  }
+
+  getUsertype(): string {
+    if (!this.isSessionActive()) {
+      return "";
+    } else {
+      let token: string = localStorage.getItem("token");
+      return this.oDecodeService.decode(token).role;
+    }
+  }
 
   isSessionActive(): Boolean {
     let strToken: string = localStorage.getItem("token");
@@ -73,7 +91,7 @@ export class SessionService {
 }
 
 export class EmitEvent {
-  constructor(public name: any, public value?: any) {}
+  constructor(public name: any, public value?: any) { }
 }
 
 // this works like a communication channel

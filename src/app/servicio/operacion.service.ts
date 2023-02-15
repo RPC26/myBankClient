@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BASE_URL, HTTP_OPTIONS } from 'src/environments/environment';
+import { IOperacionesAñoCount } from '../model/dashboard-interface';
 import { IOperacion, IOperacionCreate, IOperacionPage, IOperacionUpdate } from '../model/operacion-interface';
 
 @Injectable({
@@ -23,7 +24,7 @@ getPage(page: number, size: number, filter: string, id_tipoOperacion: number, id
   let url: string = `${BASE_URL}${this.entityURL}`;
 
   if (id_tipoOperacion != 0) {
-    params = params.set("tipousuario", id_tipoOperacion);
+    params = params.set("tipoOperacion", id_tipoOperacion);
   }
 
   if (id_cuentaEmisor != 0) {
@@ -49,6 +50,14 @@ getPage(page: number, size: number, filter: string, id_tipoOperacion: number, id
 
 getOne(id: number): Observable<IOperacion> {
   return this.oHttp.get<IOperacion>(`${this.url}/${id}`, HTTP_OPTIONS);
+}
+
+getOperacionesHoy(): Observable<number> {
+  return this.oHttp.get<number>(`${this.url}/operacionesHoy`, HTTP_OPTIONS);
+}
+
+getOperacionesCountGrafica(): Observable<IOperacionesAñoCount[]>{
+  return this.oHttp.get<IOperacionesAñoCount[]>(`${this.url}/dashboard/operaciones`, HTTP_OPTIONS);
 }
 
 removeOne(id: number): Observable<number> {

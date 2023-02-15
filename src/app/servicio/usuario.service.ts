@@ -40,6 +40,10 @@ getPage(page: number, size: number, filter: string, id_tipousuario: number, strS
   return this.oHttp.get<IUsuarioPage>(url, { headers: headers, withCredentials, params });
 }
 
+count(): Observable<number> {
+  return this.oHttp.get<number>(`${this.url}/count`, HTTP_OPTIONS)
+}
+
 getSaldo(id: number): Observable<ISaldoUsuario> {
   return this.oHttp.get<ISaldoUsuario>(`${this.url}/${id}/saldo`, HTTP_OPTIONS);
 }

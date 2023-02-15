@@ -13,13 +13,6 @@
         </div>
 
         <div class="mb-3 row">
-          <label for="inputID" class="col-sm-2 col-form-label">Fecha Creacion</label>
-          <div class="col-sm-2">
-            <input type="text" class="form-control" id="inputID" formControlName="fechacreacion" readonly>
-          </div>
-        </div>
-
-        <div class="mb-3 row">
           <label for="inputusuario" class="col-sm-2 col-form-label">Usuario</label>
           <div class="col-sm-6 has-validation">
             <div class="input-group">
@@ -89,7 +82,14 @@
         </div>
 
 
-
+        <div class="mb-3 row">
+          <label class="form-check-label col-form-label col-xl-2" for="flexCheckDefault">
+            Activa
+          </label>
+          <div class="col-sm-6">
+            <input class="form-check-input" formControlName="activa" type="checkbox" id="flexCheckDefault">
+          </div>
+        </div>
 
 
         <button type="submit" class="btn btn-primary" [disabled]="oForm.invalid">Guardar</button>

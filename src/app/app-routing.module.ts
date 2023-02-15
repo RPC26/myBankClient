@@ -18,11 +18,14 @@ import { UsuarioViewAdminRoutedComponent } from './componente/application/usuari
 import { HomeComponent } from './componente/shared/routed/home/home.component';
 import { LoginComponent } from './componente/shared/routed/login/login.component';
 import { LogoutComponent } from './componente/shared/routed/logout/logout.component';
+import { MyDatosComponent } from './componente/shared/routed/my-datos/my-datos.component';
+import { MyOperacionesComponent } from './componente/shared/routed/my-operaciones/my-operaciones.component';
 
 const routes: Routes = [
-  {path: "home", component: HomeComponent},
+  {path: "", redirectTo: "login", pathMatch: 'full'},
+  {path: "dashboard", component: HomeComponent},
 
-  {path:"login", component: LoginComponent },
+  { path: "login", component: LoginComponent },
   { path: 'logout', component: LogoutComponent }, 
 
   {path: "plist/usuario", component: UsuarioPlistAdminRoutedComponent},
@@ -43,6 +46,9 @@ const routes: Routes = [
   {path: "admin/operacion/edit/:id", component: OperacionEditAdminRoutedComponent},
   {path: "admin/operacion/remove/:id", component: OperacionRemoveAdminRoutedComponent},
   {path: "admin/operacion/new", component: OperacionNewAdminRoutedComponent},
+
+  {path: "usuario/my-datos", component: MyDatosComponent},
+  {path: "usuario/my-operaciones", component: MyOperacionesComponent},
 ];
 
 @NgModule({

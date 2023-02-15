@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="col-md text-end d-flex justify-content-center align-items-center mb-3">
+            </div>
+            <div class="col-md d-flex align-items-center justify-content-between text-center">
+                <app-pagination-unrouted [nPage]="getPageNumber() + 1" [nTotalPages]="this.getpagesCount()"
+                    (eePage)="setPage($event)"></app-pagination-unrouted>
+            </div>
+
+            <h5 class="text-muted" *ngIf="totalRegisters <= 0">No hay operaciones...</h5>
+            <table *ngIf="totalRegisters > 0" class="table table-bordered table-striped mt-4">
+                <thead>
+                    <tr>
+                        <th (click)="setOrder('cantidad')">Cantidad</th>
+                        <th (click)="setOrder('fechahoraoperacion')">Fecha operación</th>
+                        <th (click)="setOrder('tipooperacion.id')">Tipo operación</th>
+                        <th (click)="setOrder('receptorCuentaEntity.iban')">Cuenta receptor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let operacion of this.getPageContent()">
+                        <td>{{operacion.cantidad | number:'1.2-2'}}€</td>
+                        <td>{{operacion.fechahoraoperacion | date: 'dd/MM/yyyy'}}</td>
+                        <td>{{operacion.tipooperacion.nombre}}</td>
+                        <td *ngIf="operacion.receptorCuentaEntity !== null">{{operacion.receptorCuentaEntity.iban}}</td>
+                        <td *ngIf="operacion.receptorCuentaEntity === null">-</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

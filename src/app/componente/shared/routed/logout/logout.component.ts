@@ -18,7 +18,7 @@ export class LogoutComponent implements OnInit {
   }
 
   logout() {
-    this.oRouter.navigate(['/home'])
+    this.oRouter.navigate(['/dashboard'])
     this.oSessionService.logout();
     this.oSessionService.emit(new EmitEvent(Events.logout, ""));
   }

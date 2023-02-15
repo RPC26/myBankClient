@@ -1,0 +1,222 @@
+<div class="container">
+    <div class="row">
+        <div class="col p-4 mt-3">
+            <div class="d-flex align-items-center gap-4 justify-content-center">
+                <button (click)="setTipooperacion(1)" class="btn btn-success btn-lg w-100">
+                    Ingresar
+                </button>
+                <button (click)="setTipooperacion(2)" class="btn btn-success btn-lg w-100">
+                    Extraer
+                </button>
+                <button (click)="setTipooperacion(3)" class="btn btn-success btn-lg w-100">
+                    Transferencia
+                </button>
+            </div>
+            <h1 class="mt-4 text-center">{{tipooperacionString}}</h1>
+            <form class="mt-5" novalidate [formGroup]="oForm" (ngSubmit)="onSubmit()">
+        
+                <div class="mb-3 row">
+                  <label for="inputcantidad" class="col-sm-2 col-form-label">Cantidad</label>
+                  <div class="col-sm-4 has-validation">
+                    <div class="input-group">
+                      <input type="number" class="form-control" [ngClass]="{'is-valid' : oForm.controls.cantidad.dirty && !oForm.controls.cantidad.errors?.['required'] &&
+                    oForm.controls.cantidad.dirty && !oForm.controls.cantidad.errors?.['min'] ,
+                      'is-invalid' :  oForm.controls.cantidad.dirty &&  oForm.controls.cantidad.errors?.['min']  ||  
+                      oForm.controls.cantidad.dirty &&  oForm.controls.cantidad.errors?.['required']}" id="inputcantidad"
+                      formControlName="cantidad">
+                      <button *ngIf="tipooperacion !== 1 && ibanEmisor !== ''" type="button" class="btn btn-primary" (click)="modalCantidad()">Buscar</button>
+                    </div>
+                    
+                    <div id="inputcantidadFeedback" class="invalid-feedback"
+                      *ngIf="oForm.controls.cantidad.dirty &&  oForm.controls.cantidad.errors?.['min']">
+                      La cantidad debe ser mayor a 1.
+                    </div>
+                    <div id="inputcantidadFeedback" class="invalid-feedback"
+                      *ngIf="oForm.controls.cantidad.dirty &&  oForm.controls.cantidad.errors?.['required']">
+                      El campo es obligatorio.
+                    </div>
+                  </div>
+                </div>        
+        
+                <div class="mb-3 row">
+                  <label for="inputUsertype" class="col-sm-2 col-form-label">Cuenta Emisor</label>
+                  <div class="col-sm-6 has-validation">
+                    <div class="input-group">
+                      <span *ngIf="ibanEmisor !== ''" class="input-group-text">{{ibanEmisor}}</span>
+                      <input type="number" class="form-control" formControlName="emisorCuentaEntity"
+                        [ngClass]="{'is-valid' : 
+                      oForm.controls.emisorCuentaEntity.dirty && !oForm.controls.emisorCuentaEntity.errors?.['required'] &&
+                       !oForm.controls.emisorCuentaEntity.errors?.['pattern'],
+                        'is-invalid' :  (oForm.controls.emisorCuentaEntity.dirty &&  oForm.controls.emisorCuentaEntity.errors?.['required'] )
+                        || ( oForm.controls.emisorCuentaEntity.dirty &&  oForm.controls.emisorCuentaEntity.errors?.['pattern'])}">
+                      <button type="button" class="btn btn-primary" (click)="modalCuentaEmisor()">Buscar</button>
+                    </div>
+                    <div class="text-danger"
+                      *ngIf="oForm.controls.emisorCuentaEntity.dirty &&  oForm.controls.emisorCuentaEntity.errors?.['required']">
+                      El campo es obligatorio.
+                    </div>
+                    <div class="text-danger"
+                      *ngIf="oForm.controls.emisorCuentaEntity.dirty &&  oForm.controls.emisorCuentaEntity.errors?.['pattern']">
+                      El campo ha de ser un entrero de máximo 6 dígitos.
+                    </div>
+                  </div>
+                  <p *ngIf="ibanEmisor !== ''" class="mt-2 fs-6 fw-bold">Saldo: {{saldoCuenta | number:'1.2-2'}}€</p>
+                </div>
+        
+                <div *ngIf="tipooperacion === 3" class="mb-3 row">
+                  <label for="inputUsertype" class="col-sm-2 col-form-label">Cuenta Receptor</label>
+                  <div class="col-sm-6 has-validation">
+                    <div class="input-group"> 
+                      <span *ngIf="ibanReceptor !== ''" class="input-group-text">{{ibanReceptor}}</span>
+                      <input [disabled]="true" type="number" class="form-control" formControlName="receptorCuentaEntity"
+                        [ngClass]="{'is-valid' : 
+                      oForm.controls.receptorCuentaEntity.dirty && !oForm.controls.receptorCuentaEntity.errors?.['required'] &&
+                       !oForm.controls.receptorCuentaEntity.errors?.['pattern'],
+                        'is-invalid' :  (oForm.controls.receptorCuentaEntity.dirty &&  oForm.controls.receptorCuentaEntity.errors?.['required'] )
+                        || ( oForm.controls.receptorCuentaEntity.dirty &&  oForm.controls.receptorCuentaEntity.errors?.['pattern'])}">
+                      <button type="button" class="btn btn-primary" (click)="modalCuentaReceptor()">Buscar</button>
+                    </div>
+                    <div class="text-danger"
+                      *ngIf="oForm.controls.receptorCuentaEntity.dirty &&  oForm.controls.receptorCuentaEntity.errors?.['required']">
+                      El campo es obligatorio.
+                    </div>
+                    <div class="text-danger"
+                      *ngIf="oForm.controls.receptorCuentaEntity.dirty &&  oForm.controls.receptorCuentaEntity.errors?.['pattern']">
+                      El campo ha de ser un entrero de máximo 6 dígitos.
+                    </div>
+                  </div>
+                </div>
+        
+                <button type="submit" class="btn btn-primary" [disabled]="oForm.invalid">Aceptar</button>
+                
+              </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="feedback" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Operación realizada correctamente</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          Se han {{tipooperacionModal}} {{cantidad | number:'1.2-2'}}€
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="cantidad" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Operación realizada correctamente</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <table class="table table-bordered table-striped">
+            <thead>
+              <th>25% saldo</th>
+              <th>50% saldo</th>
+              <th>100% saldo</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{saldo25 | number:'1.2-2'}}€</td>
+                <td>{{saldo50 | number:'1.2-2'}}€</td>
+                <td>{{saldoCuenta | number:'1.2-2'}}€</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="btn-group" role="group" aria-label="Herramientas">
+                    <button class="btn btn-sm btn-primary" (click)="setCantidad(saldo25)">
+                      Seleccionar
+                    </button>
+                  </div>
+              </td>
+              <td>
+                <div class="btn-group" role="group" aria-label="Herramientas">
+                  <button class="btn btn-sm btn-primary" (click)="setCantidad(saldo50)">
+                    Seleccionar
+                  </button>
+                </div>
+            </td>
+            <td>
+              <div class="btn-group" role="group" aria-label="Herramientas">
+                <button class="btn btn-sm btn-primary" (click)="setCantidad(saldoCuenta)">
+                  Seleccionar
+                </button>
+              </div>
+          </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container position-fixed bottom-0  end-0 p-3">
+    <div id="errorToast" class="toast" role="alert" aria-live="assertive" data-bs-dismiss="toast" aria-atomic="true">
+      <div class="toast-header bg-danger">
+        <strong class="me-auto text-white">Operación errónea</strong>
+      </div>
+      <div class="toast-body bg-danger-subtle">
+        No tienes suficiente saldo para esta operación
+      </div>
+    </div>
+  </div>
+
+<div class="modal fade" id="emisor" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Selecciona una cuenta</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+            <app-cuenta-plist-admin-unrouted (cuentaSelectedReceptor)="setCuentaReceptor($event)" [tipo]="1"
+            [idUsuarioFilter]="idUsuarioSesion" 
+            (ibanSelected)="setIbanEmisor($event)"
+            (cuentaSelectedEmisor)="setCuentaEmisor($event)"></app-cuenta-plist-admin-unrouted>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="receptor" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Selecciona el receptor</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+            <app-cuenta-plist-admin-unrouted (cuentaSelectedReceptor)="setCuentaReceptor($event)" [tipo]="2"
+            (ibanSelected)="setIbanReceptor($event)"
+            (cuentaSelectedEmisor)="setCuentaEmisor($event)"></app-cuenta-plist-admin-unrouted>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>

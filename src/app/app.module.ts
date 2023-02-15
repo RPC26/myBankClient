@@ -35,6 +35,10 @@ import { OperacionPlistAdminRoutedComponent } from './componente/application/ope
 import { OperacionNewAdminRoutedComponent } from './componente/application/operacion/routed/admin/operacion-new-admin-routed/operacion-new-admin-routed.component';
 import { TipoOperacionPlistAdminUnRoutedComponent } from './componente/application/tipooperacion/unrouted/tipooperacion-plist-admin-unrouted/tipooperacion-plist-admin-unrouted.component';
 import { OperacionEditAdminRoutedComponent } from './componente/application/operacion/routed/admin/operacion-edit-admin-routed/operacion-edit-admin-routed.component';
+import { ChartUnroutedComponent } from './componente/shared/unrouted/chart-unrouted/chart-unrouted.component';
+import { MyDatosComponent } from './componente/shared/routed/my-datos/my-datos.component';
+import { MyOperacionesComponent } from './componente/shared/routed/my-operaciones/my-operaciones.component';
+import { OperacionPlistUnroutedComponent } from './componente/application/operacion/unrouted/operacion-plist-unrouted/operacion-plist-unrouted.component';
 
 
 @NgModule({
@@ -66,7 +70,11 @@ import { OperacionEditAdminRoutedComponent } from './componente/application/oper
     OperacionPlistAdminRoutedComponent,
     OperacionNewAdminRoutedComponent,
     TipoOperacionPlistAdminUnRoutedComponent,
-    OperacionEditAdminRoutedComponent
+    OperacionEditAdminRoutedComponent,
+    ChartUnroutedComponent,
+    MyDatosComponent,
+    MyOperacionesComponent,
+    OperacionPlistUnroutedComponent,
   ],
 
   imports: [
