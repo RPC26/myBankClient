@@ -8,7 +8,7 @@ export const environment = {
   production: false
 };
 
-export const BASE_URL = "http://localhost:8082"
+export const BASE_URL = "https://mybankserver-production.up.railway.app"
 
 export const HTTP_OPTIONS =  {
   headers: new HttpHeaders({
