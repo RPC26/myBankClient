@@ -13,6 +13,7 @@ export class TipoUsuarioPlistAdminRoutedComponent implements OnInit {
   constructor( private oTipoUsuarioService: TipoUsuarioService  ) { }
 
   @Output() tipousuarioSelected = new EventEmitter<number>();
+  @Output() tipousuarioNombre = new EventEmitter<string>();
   private pListContent!: ITipoUsuario[];
   private pagesCount!: number;
   private numberPage : number= 0;
@@ -24,6 +25,10 @@ export class TipoUsuarioPlistAdminRoutedComponent implements OnInit {
 
   setSelectedTipoUsuario = (id: number) => {
     this.tipousuarioSelected.emit(id)
+  }
+
+  setSelectedTipoUsuarioNombre = (nombre: string) => {
+    this.tipousuarioNombre.emit(nombre)
   }
 
   getPlist(){

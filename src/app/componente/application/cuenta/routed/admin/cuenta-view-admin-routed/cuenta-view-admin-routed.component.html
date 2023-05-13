@@ -27,7 +27,7 @@
                     </tr>
                     <tr>
                         <td>ACTIVA</td>
-                        <td>{{oICuenta?.activa}}</td>
+                        <td>{{oICuenta?.activa && 'Activa' || 'Desactivada'}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -42,8 +42,8 @@
                     <tbody>
                         <tr>
                             <td>{{oSaldoCuenta.idCuenta}}</td>
-                            <td>{{oSaldoCuenta.saldoReal}}</td>
-                            <td>{{oSaldoCuenta.saldoBeneficio}}</td>
+                            <td>{{oSaldoCuenta.saldoReal | number:'1.2-2'}}€</td>
+                            <td>{{oSaldoCuenta.saldoBeneficio | number:'1.2-2'}}€</td>
                         </tr>
                     </tbody>
                 </table>

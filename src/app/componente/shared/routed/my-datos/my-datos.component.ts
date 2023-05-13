@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ChartConfiguration, ChartData } from 'chart.js';
+import { ChartConfiguration, ChartData, Chart } from 'chart.js';
 import { OperacionPlistUnroutedComponent } from 'src/app/componente/application/operacion/unrouted/operacion-plist-unrouted/operacion-plist-unrouted.component';
 import { ICuentaPage } from 'src/app/model/cuenta-interface';
+import { IOperacionesAñoCount } from 'src/app/model/dashboard-interface';
 import { CuentaService } from 'src/app/servicio/cuenta.service';
+import { OperacionService } from 'src/app/servicio/operacion.service';
 import { SessionService } from 'src/app/servicio/session.service';
 
 declare let bootstrap: any
@@ -35,47 +37,29 @@ export class MyDatosComponent implements OnInit {
 
   @ViewChild(OperacionPlistUnroutedComponent) operacionPlist: OperacionPlistUnroutedComponent
 
-  public dataCuentas: ChartData
-  public optionsCuentas: ChartConfiguration['options'] = {
-    responsive: true,
-  } 
+  chartCuenta: Chart
+  chartSaldo: Chart
 
-  dataOperaciones: ChartData = {
-    labels: ['A', 'B', 'C', 'D'],
-    datasets: [
-      {
-        label: 'Ingresos',
-        data: [10, 20, 30, 40],      
-        backgroundColor: '#65a30d',
-        borderColor: '#65a30d'
-      },
-      {
-        label: 'Extracciones',
-        data: [50, 60, 20, 80],
-        tension: 0.5,
-        backgroundColor: '#9BD0F5',
-        borderColor: '#9BD0F5',
-      },
-      {
-        label: 'Transferencias',
-        data: [15, 70, 50, 40],
-        tension: 0.5,
-        backgroundColor: '#9333ea',
-        borderColor: '#9333ea',
-      },
-      
-    ]
-}
+  dataCuentas: ChartData
+  optionsCuentas: ChartConfiguration['options'] = {
+    responsive: true,
+  }
+
+  dataSaldo: ChartData = {
+    labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre",
+      "Octubre", "Noviembre", "Diciembre"],
+    datasets: []
+  }
 
   constructor(
     private oCuentaService: CuentaService,
     private oSessionService: SessionService
   ) {
     this.dataCuentas = {
-      labels: ["Positivo", "Negativo"], 
+      labels: ["Positivo", "Negativo"],
       datasets: [
         {
-          label: 'Dinero', 
+          label: 'Dinero',
           data: [21, 342],
         },
       ]
@@ -85,6 +69,15 @@ export class MyDatosComponent implements OnInit {
   ngOnInit(): void {
     this.idUsuarioSesion = parseInt(this.oSessionService.getUserId())
     this.getCuentas()
+    this.initSaldoGrafica()
+  }
+
+  initSaldoGrafica() {
+    this.oCuentaService.getSaldoMisCuentas().subscribe({
+      next: (data) => {
+        this.setChartData([data])
+      }
+    })
   }
 
   getCuentas() {
@@ -96,13 +89,25 @@ export class MyDatosComponent implements OnInit {
       })
   }
 
-  getGraficaOperaciones () {
+  setSaldoChart(chart: Chart) {
+    this.chartSaldo = chart
+  }
 
+  setChartData(chartData: IOperacionesAñoCount[]) {
+    console.log("datitos", chartData)
+
+    chartData.forEach(data => {
+      this.chartSaldo.data.datasets.push({
+        label: data.label,
+        data: data.data
+      })
+    })
+    this.chartSaldo.update()
   }
 
   modalCuenta(id: number) {
     this.myModal = new bootstrap.Modal(document.getElementById("cuentaModal"), { keyboard: false })
-    
+
     this.cuentaIdSelected = id
     this.oCuentaService.getOne(this.cuentaIdSelected).subscribe({
       next: (data) => {
@@ -110,7 +115,7 @@ export class MyDatosComponent implements OnInit {
         this.ibanCuenta = data.iban
         this.tipoCuenta = data.tipocuenta.nombre
         this.fechaCreacionCuenta = data.fechacreacion
-        
+
         this.oCuentaService.getSaldo(this.cuentaIdSelected).subscribe({
           next: (saldo) => {
             this.saldoBeneficioCuenta = saldo.saldoBeneficio
@@ -119,7 +124,7 @@ export class MyDatosComponent implements OnInit {
             this.operacionPlist.getPage()
           }
         })
-      } 
+      }
     })
 
     this.myModal.show()

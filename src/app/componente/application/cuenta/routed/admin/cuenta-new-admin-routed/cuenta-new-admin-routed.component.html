@@ -17,7 +17,7 @@
           <label for="inputusuario" class="col-sm-2 col-form-label">Usuario</label>
           <div class="col-sm-6 has-validation">
             <div class="input-group">
-              <span class="input-group-text">Descripcion de la ajena</span>
+              <span *ngIf="usuarioNombre !== ''" class="input-group-text">{{usuarioNombre}}</span>
               <input type="number" class="form-control" formControlName="id_usuario" [ngClass]="{'is-valid' : 
               oForm.controls.id_usuario.dirty && !oForm.controls.id_usuario.errors?.['required'] &&
                !oForm.controls.id_usuario.errors?.['pattern'],
@@ -41,7 +41,7 @@
           <label for="inputtipocuenta" class="col-sm-2 col-form-label">Tipo cuenta</label>
           <div class="col-sm-6 has-validation">
             <div class="input-group">
-              <span class="input-group-text">Descripcion de la ajena</span>
+              <span *ngIf="tipocuentaNombre !== ''" class="input-group-text">{{tipocuentaNombre}}</span>
               <input type="number" class="form-control" formControlName="id_tipocuenta" [ngClass]="{'is-valid' : 
               oForm.controls.id_tipocuenta.dirty && !oForm.controls.id_tipocuenta.errors?.['required'] &&
                !oForm.controls.id_tipocuenta.errors?.['pattern'],
@@ -127,7 +127,7 @@
       </div>
       <div class="modal-body">
 
-        <app-usuario-plist-admin-unrouted (usuarioSelected)="setUsario($event)"></app-usuario-plist-admin-unrouted>
+        <app-usuario-plist-admin-unrouted (usuarioSelected)="setUsario($event)" (usuarioNombre)="setUsuarionombre($event)"></app-usuario-plist-admin-unrouted>
 
       </div>
       <div class="modal-footer">
@@ -147,7 +147,7 @@
       </div>
       <div class="modal-body">
 
-        <app-tipocuenta-plist-admin-unrouted (tipocuentaSelected)="setTipocuenta($event)"></app-tipocuenta-plist-admin-unrouted>
+        <app-tipocuenta-plist-admin-unrouted (tipocuentaSelected)="setTipocuenta($event)" (tipocuentaNombre)="setTipocuentaNombre($event)"></app-tipocuenta-plist-admin-unrouted>
 
       </div>
       <div class="modal-footer">

@@ -51,8 +51,8 @@
                     <tbody>
                         <tr>
                             <td>{{cuenta.idCuenta}}</td>
-                        <td>{{cuenta.saldoReal}}</td>
-                        <td>{{cuenta.saldoBeneficio}}</td>
+                        <td>{{cuenta.saldoReal | number:'1.2-2'}}€</td>
+                        <td>{{cuenta.saldoBeneficio | number:'1.2-2'}}€</td>
                         </tr>
                     </tbody>
                 </table>

@@ -26,6 +26,7 @@ export class UsuarioNewAdminRoutedComponent implements OnInit {
 
   ajena: string = "ajena";
 
+  tipousuarioNombre: string = ""
 
   constructor(
     private oRouter: Router,
@@ -78,6 +79,10 @@ export class UsuarioNewAdminRoutedComponent implements OnInit {
   setTipousario(id: number) {
     this.oForm.controls['id_tipousuario'].setValue(id);
     this.myModal.hide();
+  }
+
+  setTipousuarioNombre(nombre: string) {
+    this.tipousuarioNombre = nombre
   }
 
   showModal = (data) => {

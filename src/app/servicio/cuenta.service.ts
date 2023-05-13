@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BASE_URL, HTTP_OPTIONS } from 'src/environments/environment';
 import { ICuenta, ICuentaCreate, ICuentaPage, ICuentaUpdate, IEstadoCuentas } from '../model/cuenta-interface';
+import { IOperacionesAñoCount } from '../model/dashboard-interface';
 import { ISaldoCuenta } from '../model/saldo-interface';
 
 @Injectable({
@@ -42,6 +43,10 @@ getPage(page: number, size: number, filter: string, id_tipocuenta: number, id_us
   const  { headers, withCredentials } = HTTP_OPTIONS
 
   return this.oHttp.get<ICuentaPage>(url, { headers: headers, withCredentials, params });
+}
+
+getSaldoMisCuentas(): Observable<IOperacionesAñoCount> {
+  return this.oHttp.get<IOperacionesAñoCount>(`${this.url}/saldo/misCuentas`, HTTP_OPTIONS);
 }
 
 getOne(id: number): Observable<ICuenta> {

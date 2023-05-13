@@ -4,8 +4,13 @@
 }
 
 #cajero{
-    border: solid 8px;
+    margin-top: 3%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     border-radius: 15px;
-    color: black;
-    background-color: bisque;
+    padding: 15px;
+    background-color: white;
+}
+
+button {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }

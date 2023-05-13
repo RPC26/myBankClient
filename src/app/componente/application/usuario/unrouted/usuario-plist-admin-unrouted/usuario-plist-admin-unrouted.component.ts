@@ -17,6 +17,7 @@ export class UsuarioPlistAdminUnRoutedComponent implements OnInit {
 
 
   @Output() usuarioSelected = new EventEmitter<number>();
+  @Output() usuarioNombre = new EventEmitter<string>();
   private pListContent!: IUsuario[];
   public userPage: IUsuarioPage;
   private pagesCount!: number;
@@ -40,6 +41,10 @@ export class UsuarioPlistAdminUnRoutedComponent implements OnInit {
 
   setSelectedUsuario = (id: number) => {
     this.usuarioSelected.emit(id)
+  }
+
+  setSelectedUsuarioNombre = (nombre: string) => {
+    this.usuarioNombre.emit(nombre)
   }
 
   getPage(): void {

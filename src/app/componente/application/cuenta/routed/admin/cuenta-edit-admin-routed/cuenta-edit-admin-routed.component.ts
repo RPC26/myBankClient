@@ -25,6 +25,9 @@ export class CuentaEditAdminRoutedComponent implements OnInit {
   usuario: string = "usuarioModal";
   tipocuenta: string = "tipocuentaModal"
 
+  tipocuentaNombre: string = ""
+  usuarioNombre: string = ""
+
   constructor(
     private oRouter: Router,
     private oActivatedRoute: ActivatedRoute,
@@ -53,6 +56,14 @@ export class CuentaEditAdminRoutedComponent implements OnInit {
   setTipocuenta(id: number) {
     this.oForm.controls['id_tipocuenta'].setValue(id);
     this.myModal.hide();
+  }
+
+  setTipocuentaNombre(nombre: string) {
+    this.tipocuentaNombre = nombre;
+  }
+
+  setUsuarionombre(nombre: string) {
+    this.usuarioNombre = nombre;
   }
 
   getOne() {

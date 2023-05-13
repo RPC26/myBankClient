@@ -38,7 +38,7 @@
                         <th (click)="setOrder('usuario.id')">USUARIO</th>
                         <th (click)="setOrder('tipocuenta.id')">TIPOCUENTA</th>
                         <th (click)="setOrder('iban')">IBAN</th>
-                        <th (click)="setOrder('activa')">ACTIVA</th>
+                        <th (click)="setOrder('activa')">ESTADO</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -52,7 +52,7 @@
                             {{cuenta.tipocuenta.id}}-{{cuenta.tipocuenta.nombre}}</td>
                         
                         <td>{{cuenta.iban}}</td>
-                        <td>{{cuenta.activa}}</td>
+                        <td>{{cuenta.activa && 'Activada' || 'Desactivada' }}</td>
                             <td><div class="btn-group" role="group" aria-label="Herramientas">
                                 <button class="btn btn-sm btn-primary"
                                     [routerLink]="['/admin/cuenta/view',cuenta.id]">

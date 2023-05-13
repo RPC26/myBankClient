@@ -163,7 +163,7 @@
           <label for="inputUsertype" class="col-sm-2 col-form-label">Tipo usuario</label>
           <div class="col-sm-6 has-validation">
             <div class="input-group">
-              <span class="input-group-text">Descripcion de la ajena</span>
+              <span *ngIf="tipousuarioNombre !== ''" class="input-group-text">{{tipousuarioNombre}}</span>
               <input type="number" class="form-control" formControlName="id_tipousuario" [ngClass]="{'is-valid' : 
               oForm.controls.id_tipousuario.dirty && !oForm.controls.id_tipousuario.errors?.['required'] &&
                !oForm.controls.id_tipousuario.errors?.['pattern'],
@@ -220,7 +220,7 @@
       </div>
       <div class="modal-body">
 
-        <app-tipousuario-plist-admin-unrouted (tipousuarioSelected)="setTipousario($event)"></app-tipousuario-plist-admin-unrouted>
+        <app-tipousuario-plist-admin-unrouted (tipousuarioSelected)="setTipousario($event)" (tipousuarioNombre)="setTipousuarioNombre($event)"></app-tipousuario-plist-admin-unrouted>
 
       </div>
       <div class="modal-footer">

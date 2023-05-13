@@ -13,6 +13,7 @@ export class TipoCuentaPlistAdminUnRoutedComponent implements OnInit {
   constructor( private oTipoCuentaService: TipoCuentaService  ) { }
 
   @Output() tipocuentaSelected = new EventEmitter<number>();
+  @Output() tipocuentaNombre = new EventEmitter<string>();
   private pListContent!: ITipocuenta[];
   private pagesCount!: number;
   private numberPage : number= 0;
@@ -24,6 +25,10 @@ export class TipoCuentaPlistAdminUnRoutedComponent implements OnInit {
 
   setSelectedTipoCuenta = (id: number) => {
     this.tipocuentaSelected.emit(id)
+  }
+
+  setSelectedTipoCuentaNombre = (nombre: string) => {
+    this.tipocuentaNombre.emit(nombre)
   }
 
   getPlist(){
